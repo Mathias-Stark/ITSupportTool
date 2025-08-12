@@ -162,43 +162,25 @@
         <Grid Grid.Column="1" Margin="10">
             <!-- Service Desk View -->
             <StackPanel x:Name="ServiceDeskPanel" Visibility="{Binding IsServiceDeskViewVisible, Converter={StaticResource BoolToVis}}">
-                <Label Content="{Binding ServiceDeskTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
+                <Label Content="{Binding ServiceDeskTitle, Mode=OneWay}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
 
                 <!-- Denmark Service Desk -->
-                <Label Content="{Binding ServiceDeskDenmarkTitle}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
-                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
-                    <Run Text="{Binding ServiceDeskHours}"/>
-                </TextBlock>
-                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
-                    <Run Text="{Binding ServiceDeskDenmarkPhone}"/>
-                </TextBlock>
-                <TextBlock Margin="15,5,15,10" TextWrapping="Wrap">
-                     <Run Text="{Binding ServiceDeskDenmarkEmail}"/>
-                </TextBlock>
+                <Label Content="{Binding ServiceDeskDenmarkTitle, Mode=OneWay}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Text="{Binding ServiceDeskHours, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding ServiceDeskDenmarkPhone, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding ServiceDeskDenmarkEmail, Mode=OneWay}" Margin="15,5,15,10" TextWrapping="Wrap"/>
 
                 <!-- Norway Service Desk -->
-                <Label Content="{Binding ServiceDeskNorwayTitle}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
-                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
-                    <Run Text="{Binding ServiceDeskHours}"/>
-                </TextBlock>
-                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
-                    <Run Text="{Binding ServiceDeskNorwayPhone}"/>
-                </TextBlock>
-                <TextBlock Margin="15,5,15,10" TextWrapping="Wrap">
-                     <Run Text="{Binding ServiceDeskNorwayEmail}"/>
-                </TextBlock>
+                <Label Content="{Binding ServiceDeskNorwayTitle, Mode=OneWay}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Text="{Binding ServiceDeskHours, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding ServiceDeskNorwayPhone, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding ServiceDeskNorwayEmail, Mode=OneWay}" Margin="15,5,15,10" TextWrapping="Wrap"/>
 
                 <!-- Sweden Service Desk -->
-                <Label Content="{Binding ServiceDeskSwedenTitle}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
-                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
-                    <Run Text="{Binding ServiceDeskHours}"/>
-                </TextBlock>
-                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
-                    <Run Text="{Binding ServiceDeskSwedenPhone}"/>
-                </TextBlock>
-                <TextBlock Margin="15,5,15,10" TextWrapping="Wrap">
-                     <Run Text="{Binding ServiceDeskSwedenEmail}"/>
-                </TextBlock>
+                <Label Content="{Binding ServiceDeskSwedenTitle, Mode=OneWay}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Text="{Binding ServiceDeskHours, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding ServiceDeskSwedenPhone, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding ServiceDeskSwedenEmail, Mode=OneWay}" Margin="15,5,15,10" TextWrapping="Wrap"/>
             </StackPanel>
 
             <!-- View 1: Computer Information Panel -->
