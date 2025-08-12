@@ -26,7 +26,8 @@ namespace ITSupportToolGUI
     {
         // ==================== Member Variables ====================
         private readonly ResourceManager _resourceManager = new ResourceManager("ITSupportToolGUI.Resources.Strings", typeof(MainViewModel).Assembly);
-        private bool _isInfoViewVisible = true;
+        private bool _isServiceDeskViewVisible = true;
+        private bool _isComputerInfoViewVisible = false;
         private bool _isInstructionsViewVisible = false;
         private bool _isPrinterViewVisible = false;
         private int _windowWidth = 520; // Initial width
@@ -51,13 +52,15 @@ namespace ITSupportToolGUI
         public ICommand BackToInfoViewCommand { get; }
         public ICommand CopyAllInfoCommand { get; }
         public ICommand ShowPrinterViewCommand { get; }
+        public ICommand ShowComputerInfoViewCommand { get; }
         public ICommand SearchPrintersCommand { get; }
         public ICommand AddSelectedPrintersCommand { get; }
         public ICommand OpenRemoteHelpCommand { get; }
 
 
         // ==================== Visibility & Layout Properties ====================
-        public bool IsInfoViewVisible { get => _isInfoViewVisible; set { _isInfoViewVisible = value; OnPropertyChanged(); } }
+        public bool IsServiceDeskViewVisible { get => _isServiceDeskViewVisible; set { _isServiceDeskViewVisible = value; OnPropertyChanged(); } }
+        public bool IsComputerInfoViewVisible { get => _isComputerInfoViewVisible; set { _isComputerInfoViewVisible = value; OnPropertyChanged(); } }
         public bool IsInstructionsViewVisible { get => _isInstructionsViewVisible; set { _isInstructionsViewVisible = value; OnPropertyChanged(); } }
         public bool IsPrinterViewVisible { get => _isPrinterViewVisible; set { _isPrinterViewVisible = value; OnPropertyChanged(); } }
         public int WindowWidth { get => _windowWidth; set { _windowWidth = value; OnPropertyChanged(); } }
@@ -127,6 +130,20 @@ namespace ITSupportToolGUI
         public string SearchButtonText => _resourceManager.GetString("SearchButtonText") ?? string.Empty;
         public string AddSelectedButtonText => _resourceManager.GetString("AddSelectedButtonText") ?? string.Empty;
 
+        public string ServiceDeskTitle => _resourceManager.GetString("ServiceDeskTitle") ?? string.Empty;
+        public string ServiceDeskHours => _resourceManager.GetString("ServiceDeskHours") ?? string.Empty;
+        public string ServiceDeskDenmarkPhone => _resourceManager.GetString("ServiceDeskDenmarkPhone") ?? string.Empty;
+        public string ServiceDeskDenmarkEmail => _resourceManager.GetString("ServiceDeskDenmarkEmail") ?? string.Empty;
+        public string ServiceDeskNorwayPhone => _resourceManager.GetString("ServiceDeskNorwayPhone") ?? string.Empty;
+        public string ServiceDeskNorwayEmail => _resourceManager.GetString("ServiceDeskNorwayEmail") ?? string.Empty;
+        public string ServiceDeskSwedenPhone => _resourceManager.GetString("ServiceDeskSwedenPhone") ?? string.Empty;
+        public string ServiceDeskSwedenEmail => _resourceManager.GetString("ServiceDeskSwedenEmail") ?? string.Empty;
+        public string ShowComputerInfoLabel => _resourceManager.GetString("ShowComputerInfoLabel") ?? string.Empty;
+        public string ShowComputerInfoToolTip => _resourceManager.GetString("ShowComputerInfoToolTip") ?? string.Empty;
+        public string ServiceDeskDenmarkTitle => _resourceManager.GetString("ServiceDeskDenmarkTitle") ?? string.Empty;
+        public string ServiceDeskNorwayTitle => _resourceManager.GetString("ServiceDeskNorwayTitle") ?? string.Empty;
+        public string ServiceDeskSwedenTitle => _resourceManager.GetString("ServiceDeskSwedenTitle") ?? string.Empty;
+
 
         // ==================== Initialization ====================
         public MainViewModel()
@@ -137,6 +154,7 @@ namespace ITSupportToolGUI
             BackToInfoViewCommand = new RelayCommand(ShowInfoView);
             CopyAllInfoCommand = new RelayCommand(_ => CopyInfo());
             ShowPrinterViewCommand = new RelayCommand(ShowPrinterView);
+            ShowComputerInfoViewCommand = new RelayCommand(ShowComputerInfoView);
             SearchPrintersCommand = new RelayCommand(async _ => await SearchPrintersAsync(), _ => !_isSearchingPrinters);
             AddSelectedPrintersCommand = new RelayCommand(async _ => await AddSelectedPrintersAsync(), _ => AvailablePrinters.Any(p => p.IsSelected));
             OpenRemoteHelpCommand = new RelayCommand(_ => OpenRemoteHelp());
@@ -164,22 +182,34 @@ namespace ITSupportToolGUI
         private void ShowScriptInstructionsView(object? parameter)
         {
             WindowWidth = 570; // Expand width
-            IsInfoViewVisible = false;
+            IsServiceDeskViewVisible = false;
+            IsComputerInfoViewVisible = false;
             IsPrinterViewVisible = false;
             IsInstructionsViewVisible = true;
         }
         private void ShowInfoView(object? parameter)
         {
             WindowWidth = 520; // Shrink width back to normal
+            IsServiceDeskViewVisible = true;
+            IsComputerInfoViewVisible = false;
             IsInstructionsViewVisible = false;
             IsPrinterViewVisible = false;
-            IsInfoViewVisible = true;
+        }
+
+        private void ShowComputerInfoView(object? parameter)
+        {
+            WindowWidth = 520; // Shrink width back to normal
+            IsServiceDeskViewVisible = false;
+            IsInstructionsViewVisible = false;
+            IsPrinterViewVisible = false;
+            IsComputerInfoViewVisible = true;
         }
 
         private void ShowPrinterView(object? parameter)
         {
             WindowWidth = 800; // Expand width for printer view
-            IsInfoViewVisible = false;
+            IsServiceDeskViewVisible = false;
+            IsComputerInfoViewVisible = false;
             IsInstructionsViewVisible = false;
             IsPrinterViewVisible = true;
         }

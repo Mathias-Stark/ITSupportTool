@@ -285,4 +285,43 @@
   <data name="PrinterStatusFinished" xml:space="preserve">
     <value>Installation process finished.</value>
   </data>
+  <data name="ServiceDeskTitle" xml:space="preserve">
+    <value>IT Service Desk</value>
+  </data>
+  <data name="ServiceDeskHours" xml:space="preserve">
+    <value>Opening Hours: 08:00 - 16:00</value>
+  </data>
+  <data name="ServiceDeskDenmarkPhone" xml:space="preserve">
+    <value>Phone: 87654321</value>
+  </data>
+  <data name="ServiceDeskDenmarkEmail" xml:space="preserve">
+    <value>Email: servicedesk.dk@example.com</value>
+  </data>
+  <data name="ServiceDeskNorwayPhone" xml:space="preserve">
+    <value>Phone: 23456789</value>
+  </data>
+  <data name="ServiceDeskNorwayEmail" xml:space="preserve">
+    <value>Email: servicedesk.no@example.com</value>
+  </data>
+  <data name="ServiceDeskSwedenPhone" xml:space="preserve">
+    <value>Phone: 34567890</value>
+  </data>
+  <data name="ServiceDeskSwedenEmail" xml:space="preserve">
+    <value>Email: servicedesk.se@example.com</value>
+  </data>
+  <data name="ShowComputerInfoLabel" xml:space="preserve">
+    <value>Computer Information</value>
+  </data>
+  <data name="ShowComputerInfoToolTip" xml:space="preserve">
+    <value>Show detailed information about your computer.</value>
+  </data>
+  <data name="ServiceDeskDenmarkTitle" xml:space="preserve">
+    <value>Denmark</value>
+  </data>
+  <data name="ServiceDeskNorwayTitle" xml:space="preserve">
+    <value>Norway</value>
+  </data>
+  <data name="ServiceDeskSwedenTitle" xml:space="preserve">
+    <value>Sweden</value>
+  </data>
 </root>

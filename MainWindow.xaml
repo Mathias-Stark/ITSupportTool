@@ -149,6 +149,7 @@
                 <Button x:Name="btnOpenTicketSystem" Content="{Binding OpenTicketSystemLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenTicketSystem_Click" ToolTip="{Binding OpenTicketSystemTip}"/>
                 <Button x:Name="btnOpenITMessages" Content="{Binding OpenITMessagesLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenITMessages_Click" ToolTip="{Binding OpenITMessagesTip}"/>
                 <Button x:Name="btnOpenRemoteHelp" Content="{Binding OpenRemoteHelpLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding OpenRemoteHelpCommand}" ToolTip="{Binding OpenRemoteHelpTip}"/>
+                <Button x:Name="btnShowComputerInfo" Content="{Binding ShowComputerInfoLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowComputerInfoViewCommand}" ToolTip="{Binding ShowComputerInfoToolTip}"/>
                 <Button x:Name="btnOpenPasswordReset" Content="{Binding OpenPasswordResetLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenPasswordReset_Click" ToolTip="{Binding OpenPasswordResetTip}"/>
                 <Button x:Name="btnAddPrinter" Content="{Binding AddPrinterLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowPrinterViewCommand}" ToolTip="{Binding AddPrinterToolTip}"
                         Visibility="{Binding IsPrinterButtonVisible, Converter={StaticResource BoolToVis}}"/>
@@ -159,8 +160,49 @@
 
         <!-- Main Content Area -->
         <Grid Grid.Column="1" Margin="10">
+            <!-- Service Desk View -->
+            <StackPanel x:Name="ServiceDeskPanel" Visibility="{Binding IsServiceDeskViewVisible, Converter={StaticResource BoolToVis}}">
+                <Label Content="{Binding ServiceDeskTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
+
+                <!-- Denmark Service Desk -->
+                <Label Content="{Binding ServiceDeskDenmarkTitle}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
+                    <Run Text="{Binding ServiceDeskHours}"/>
+                </TextBlock>
+                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
+                    <Run Text="{Binding ServiceDeskDenmarkPhone}"/>
+                </TextBlock>
+                <TextBlock Margin="15,5,15,10" TextWrapping="Wrap">
+                     <Run Text="{Binding ServiceDeskDenmarkEmail}"/>
+                </TextBlock>
+
+                <!-- Norway Service Desk -->
+                <Label Content="{Binding ServiceDeskNorwayTitle}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
+                    <Run Text="{Binding ServiceDeskHours}"/>
+                </TextBlock>
+                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
+                    <Run Text="{Binding ServiceDeskNorwayPhone}"/>
+                </TextBlock>
+                <TextBlock Margin="15,5,15,10" TextWrapping="Wrap">
+                     <Run Text="{Binding ServiceDeskNorwayEmail}"/>
+                </TextBlock>
+
+                <!-- Sweden Service Desk -->
+                <Label Content="{Binding ServiceDeskSwedenTitle}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
+                    <Run Text="{Binding ServiceDeskHours}"/>
+                </TextBlock>
+                <TextBlock Margin="15,5,15,0" TextWrapping="Wrap">
+                    <Run Text="{Binding ServiceDeskSwedenPhone}"/>
+                </TextBlock>
+                <TextBlock Margin="15,5,15,10" TextWrapping="Wrap">
+                     <Run Text="{Binding ServiceDeskSwedenEmail}"/>
+                </TextBlock>
+            </StackPanel>
+
             <!-- View 1: Computer Information Panel -->
-            <StackPanel x:Name="InfoPanel" Visibility="{Binding IsInfoViewVisible, Converter={StaticResource BoolToVis}}">
+            <StackPanel x:Name="ComputerInfoPanel" Visibility="{Binding IsComputerInfoViewVisible, Converter={StaticResource BoolToVis}}">
                 <Button Style="{StaticResource ClickableTitleStyle}" Command="{Binding CopyAllInfoCommand}" ToolTip="{Binding CopyAllInfoTip}">
                     <Label Content="{Binding ComputerInformationTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
                 </Button>
@@ -325,7 +367,7 @@
                     VerticalAlignment="Bottom" 
                     Margin="0,0,0,-5" 
                     Cursor="Hand"
-                    Visibility="{Binding IsInfoViewVisible, Converter={StaticResource BoolToVis}}"/>
+                    Visibility="{Binding IsComputerInfoViewVisible, Converter={StaticResource BoolToVis}}"/>
         </Grid>
     </Grid>
 </Window>
