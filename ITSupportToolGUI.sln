@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITSupportToolGUI", "ITSupportToolGUI.csproj", "{10162D0B-38F2-4395-8D93-A56E08293152}"
 EndProject
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "ITSupportToolGUI_Package", "..\ITSupportToolGUI_Package\ITSupportToolGUI_Package.wapproj", "{22E10054-DD9B-4F54-8464-B635F26E9B49}"
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "ITSupportToolGUI_Package", "ITSupportToolGUI_Package\ITSupportToolGUI_Package.wapproj", "{22E10054-DD9B-4F54-8464-B635F26E9B49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
