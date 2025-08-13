@@ -289,25 +289,34 @@
     <value>IT Service Desk</value>
   </data>
   <data name="ServiceDeskHours" xml:space="preserve">
-    <value>Åpningstider: 08:00 - 16:00</value>
+    <value>08:00 - 16:00</value>
   </data>
   <data name="ServiceDeskDenmarkPhone" xml:space="preserve">
-    <value>Telefon: 87654321</value>
+    <value>87654321</value>
   </data>
   <data name="ServiceDeskDenmarkEmail" xml:space="preserve">
-    <value>Email: servicedesk.dk@example.com</value>
+    <value>servicedesk.dk@example.com</value>
   </data>
   <data name="ServiceDeskNorwayPhone" xml:space="preserve">
-    <value>Telefon: 23456789</value>
+    <value>23456789</value>
   </data>
   <data name="ServiceDeskNorwayEmail" xml:space="preserve">
-    <value>E-post: servicedesk.no@example.com</value>
+    <value>servicedesk.no@example.com</value>
   </data>
   <data name="ServiceDeskSwedenPhone" xml:space="preserve">
-    <value>Telefon: 34567890</value>
+    <value>34567890</value>
   </data>
   <data name="ServiceDeskSwedenEmail" xml:space="preserve">
-    <value>E-post: servicedesk.se@example.com</value>
+    <value>servicedesk.se@example.com</value>
+  </data>
+  <data name="ServiceDeskHoursLabel" xml:space="preserve">
+    <value>Åpningstider:</value>
+  </data>
+  <data name="ServiceDeskPhoneLabel" xml:space="preserve">
+    <value>Telefon:</value>
+  </data>
+  <data name="ServiceDeskEmailLabel" xml:space="preserve">
+    <value>E-post:</value>
   </data>
   <data name="ShowComputerInfoLabel" xml:space="preserve">
     <value>Datamaskin-informasjon</value>

@@ -149,6 +149,9 @@ namespace ITSupportToolGUI
         public string ServiceDeskSwedenTitle => _resourceManager.GetString("ServiceDeskSwedenTitle") ?? string.Empty;
         public string ShowServiceDeskLabel => _resourceManager.GetString("ShowServiceDeskLabel") ?? string.Empty;
         public string ShowServiceDeskToolTip => _resourceManager.GetString("ShowServiceDeskToolTip") ?? string.Empty;
+        public string ServiceDeskHoursLabel => _resourceManager.GetString("ServiceDeskHoursLabel") ?? string.Empty;
+        public string ServiceDeskPhoneLabel => _resourceManager.GetString("ServiceDeskPhoneLabel") ?? string.Empty;
+        public string ServiceDeskEmailLabel => _resourceManager.GetString("ServiceDeskEmailLabel") ?? string.Empty;
 
 
         // ==================== Initialization ====================
