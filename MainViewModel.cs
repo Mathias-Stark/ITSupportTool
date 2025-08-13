@@ -78,6 +78,10 @@ namespace ITSupportToolGUI
         public bool IsVpnConnected { get; private set; }
         public bool IsPowerShellButtonVisible { get; private set; }
         public bool IsPrinterButtonVisible { get; private set; }
+        public bool IsDenmarkServiceDeskVisible { get; private set; }
+        public bool IsNorwayServiceDeskVisible { get; private set; }
+        public bool IsSwedenServiceDeskVisible { get; private set; }
+
 
         // ==================== Printer Properties ====================
         public ObservableCollection<Printer> AvailablePrinters { get; } = new ObservableCollection<Printer>();
@@ -143,6 +147,8 @@ namespace ITSupportToolGUI
         public string ServiceDeskDenmarkTitle => _resourceManager.GetString("ServiceDeskDenmarkTitle") ?? string.Empty;
         public string ServiceDeskNorwayTitle => _resourceManager.GetString("ServiceDeskNorwayTitle") ?? string.Empty;
         public string ServiceDeskSwedenTitle => _resourceManager.GetString("ServiceDeskSwedenTitle") ?? string.Empty;
+        public string ShowServiceDeskLabel => _resourceManager.GetString("ShowServiceDeskLabel") ?? string.Empty;
+        public string ShowServiceDeskToolTip => _resourceManager.GetString("ShowServiceDeskToolTip") ?? string.Empty;
 
 
         // ==================== Initialization ====================
@@ -506,6 +512,10 @@ namespace ITSupportToolGUI
 
             IsPowerShellButtonVisible = countriesWithWifiFix.Contains(country);
             IsPrinterButtonVisible = countriesWithPrinterButton.Contains(country);
+
+            IsDenmarkServiceDeskVisible = country == "DK" || country == "GROUP";
+            IsNorwayServiceDeskVisible = country == "NO";
+            IsSwedenServiceDeskVisible = country == "SE";
 
             switch (GetCountry())
             {

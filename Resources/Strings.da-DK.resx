@@ -324,4 +324,10 @@
   <data name="ServiceDeskSwedenTitle" xml:space="preserve">
     <value>Sverige</value>
   </data>
+  <data name="ShowServiceDeskLabel" xml:space="preserve">
+    <value>IT ServiceDesk</value>
+  </data>
+  <data name="ShowServiceDeskToolTip" xml:space="preserve">
+    <value>Vis IT ServiceDesk kontaktoplysninger.</value>
+  </data>
 </root>
