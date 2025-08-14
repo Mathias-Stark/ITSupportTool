@@ -160,105 +160,36 @@
         <!-- Main Content Area -->
         <Grid Grid.Column="1" Margin="10">
             <!-- Service Desk View -->
-            <StackPanel x:Name="ServiceDeskPanel" Visibility="{Binding IsServiceDeskViewVisible, Converter={StaticResource BoolToVis}}" Margin="10">
-                <Label Content="{Binding ServiceDeskTitle, Mode=OneWay}" Margin="0,0,0,10" FontWeight="Bold" FontSize="18"/>
+            <StackPanel x:Name="ServiceDeskPanel" Visibility="{Binding IsServiceDeskViewVisible, Converter={StaticResource BoolToVis}}">
+                <Label Content="{Binding ServiceDeskTitle, Mode=OneWay}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
 
-                <!-- Denmark Service Desk Card -->
-                <Border Background="#F5F5F5" CornerRadius="5" Padding="15" Visibility="{Binding IsDenmarkServiceDeskVisible, Converter={StaticResource BoolToVis}}">
-                    <StackPanel>
-                        <Label Content="{Binding ServiceDeskDenmarkTitle, Mode=OneWay}" Margin="0,0,0,10" FontWeight="Bold" FontSize="16"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                <!-- Denmark Service Desk -->
+                <StackPanel Visibility="{Binding IsDenmarkServiceDeskVisible, Converter={StaticResource BoolToVis}}">
+                    <Label Content="{Binding ServiceDeskDenmarkTitle, Mode=OneWay}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="{Binding ServiceDeskHours, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding ServiceDeskDenmarkPhone, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding ServiceDeskDenmarkEmail, Mode=OneWay}" Margin="15,5,15,10" TextWrapping="Wrap"/>
+                </StackPanel>
 
-                            <Label Grid.Row="0" Grid.Column="0" Content="{Binding ServiceDeskHoursLabel, Mode=OneWay}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ServiceDeskHours, Mode=OneWay}" VerticalAlignment="Center"/>
+                <!-- Norway Service Desk -->
+                <StackPanel Visibility="{Binding IsNorwayServiceDeskVisible, Converter={StaticResource BoolToVis}}">
+                    <Label Content="{Binding ServiceDeskNorwayTitle, Mode=OneWay}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="{Binding ServiceDeskHours, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding ServiceDeskNorwayPhone, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding ServiceDeskNorwayEmail, Mode=OneWay}" Margin="15,5,15,10" TextWrapping="Wrap"/>
+                </StackPanel>
 
-                            <Label Grid.Row="1" Grid.Column="0" Content="{Binding ServiceDeskPhoneLabel, Mode=OneWay}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskDenmarkPhone, Mode=OneWay}" VerticalAlignment="Center"/>
-
-                            <Label Grid.Row="2" Grid.Column="0" Content="{Binding ServiceDeskEmailLabel, Mode=OneWay}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskDenmarkEmail, Mode=OneWay}" VerticalAlignment="Center"/>
-                        </Grid>
-                        <Separator Margin="0,15,0,10"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="{Binding OpenTicketSystemLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenTicketSystem_Click" ToolTip="{Binding OpenTicketSystemTip}"/>
-                            <Button Content="{Binding OpenITMessagesLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenITMessages_Click" ToolTip="{Binding OpenITMessagesTip}" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Norway Service Desk Card -->
-                <Border Background="#F5F5F5" CornerRadius="5" Padding="15" Margin="0,10,0,0" Visibility="{Binding IsNorwayServiceDeskVisible, Converter={StaticResource BoolToVis}}">
-                    <StackPanel>
-                        <Label Content="{Binding ServiceDeskNorwayTitle, Mode=OneWay}" Margin="0,0,0,10" FontWeight="Bold" FontSize="16"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <Label Grid.Row="0" Grid.Column="0" Content="{Binding ServiceDeskHoursLabel, Mode=OneWay}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ServiceDeskHours, Mode=OneWay}" VerticalAlignment="Center"/>
-
-                            <Label Grid.Row="1" Grid.Column="0" Content="{Binding ServiceDeskPhoneLabel, Mode=OneWay}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskNorwayPhone, Mode=OneWay}" VerticalAlignment="Center"/>
-
-                            <Label Grid.Row="2" Grid.Column="0" Content="{Binding ServiceDeskEmailLabel, Mode=OneWay}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskNorwayEmail, Mode=OneWay}" VerticalAlignment="Center"/>
-                        </Grid>
-                        <Separator Margin="0,15,0,10"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="{Binding OpenTicketSystemLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenTicketSystem_Click" ToolTip="{Binding OpenTicketSystemTip}"/>
-                            <Button Content="{Binding OpenITMessagesLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenITMessages_Click" ToolTip="{Binding OpenITMessagesTip}" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Sweden Service Desk Card -->
-                <Border Background="#F5F5F5" CornerRadius="5" Padding="15" Margin="0,10,0,0" Visibility="{Binding IsSwedenServiceDeskVisible, Converter={StaticResource BoolToVis}}">
-                    <StackPanel>
-                        <Label Content="{Binding ServiceDeskSwedenTitle, Mode=OneWay}" Margin="0,0,0,10" FontWeight="Bold" FontSize="16"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <Label Grid.Row="0" Grid.Column="0" Content="{Binding ServiceDeskHoursLabel, Mode=OneWay}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ServiceDeskHours, Mode=OneWay}" VerticalAlignment="Center"/>
-
-                            <Label Grid.Row="1" Grid.Column="0" Content="{Binding ServiceDeskPhoneLabel, Mode=OneWay}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskSwedenPhone, Mode=OneWay}" VerticalAlignment="Center"/>
-
-                            <Label Grid.Row="2" Grid.Column="0" Content="{Binding ServiceDeskEmailLabel, Mode=OneWay}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskSwedenEmail, Mode=OneWay}" VerticalAlignment="Center"/>
-                        </Grid>
-                        <Separator Margin="0,15,0,10"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="{Binding OpenTicketSystemLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenTicketSystem_Click" ToolTip="{Binding OpenTicketSystemTip}"/>
-                            <Button Content="{Binding OpenITMessagesLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenITMessages_Click" ToolTip="{Binding OpenITMessagesTip}" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
+                <!-- Sweden Service Desk -->
+                <StackPanel Visibility="{Binding IsSwedenServiceDeskVisible, Converter={StaticResource BoolToVis}}">
+                    <Label Content="{Binding ServiceDeskSwedenTitle, Mode=OneWay}" Margin="10,10,0,0" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="{Binding ServiceDeskHours, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding ServiceDeskSwedenPhone, Mode=OneWay}" Margin="15,5,15,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding ServiceDeskSwedenEmail, Mode=OneWay}" Margin="15,5,15,10" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
+                    <Button x:Name="btnOpenTicketSystem" Content="{Binding OpenTicketSystemLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenTicketSystem_Click" ToolTip="{Binding OpenTicketSystemTip}"/>
+                    <Button x:Name="btnOpenITMessages" Content="{Binding OpenITMessagesLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenITMessages_Click" ToolTip="{Binding OpenITMessagesTip}" Margin="10,5"/>
+                </StackPanel>
             </StackPanel>
 
             <!-- View 1: Computer Information Panel -->
