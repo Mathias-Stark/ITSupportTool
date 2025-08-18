@@ -285,8 +285,8 @@
   <data name="PrinterStatusFinished" xml:space="preserve">
     <value>Installation process finished.</value>
   </data>
-  <data name="ServiceDeskTitle" xml:space="preserve">
-    <value>IT Service Desk</value>
+  <data name="SupportTitle" xml:space="preserve">
+    <value>IT Support</value>
   </data>
   <data name="ServiceDeskHours" xml:space="preserve">
     <value>Opening Hours: 08:00 - 16:00</value>
@@ -315,8 +315,8 @@
   <data name="ShowComputerInfoToolTip" xml:space="preserve">
     <value>Show detailed information about your computer.</value>
   </data>
-  <data name="ServiceDeskDenmarkTitle" xml:space="preserve">
-    <value>Denmark</value>
+  <data name="ServiceDeskCardTitle" xml:space="preserve">
+    <value>IT Support</value>
   </data>
   <data name="ServiceDeskNorwayTitle" xml:space="preserve">
     <value>Norway</value>
@@ -324,10 +324,34 @@
   <data name="ServiceDeskSwedenTitle" xml:space="preserve">
     <value>Sweden</value>
   </data>
-  <data name="ShowServiceDeskLabel" xml:space="preserve">
-    <value>IT ServiceDesk</value>
+  <data name="ShowSupportLabel" xml:space="preserve">
+    <value>IT Support</value>
   </data>
   <data name="ShowServiceDeskToolTip" xml:space="preserve">
     <value>Show the IT ServiceDesk contact information.</value>
+  </data>
+  <data name="ServiceDeskDKPhone" xml:space="preserve">
+    <value>Telefon: 8252 6900</value>
+  </data>
+  <data name="ServiceDeskDKEmail" xml:space="preserve">
+    <value>Email: itsupport@stark.dk</value>
+  </data>
+  <data name="ServiceDeskDKHours" xml:space="preserve">
+    <value>Mandag-fredag Kl. 06.00-17.00</value>
+  </data>
+  <data name="WifiCardTitle" xml:space="preserve">
+    <value>Wifi - StarkIOT</value>
+  </data>
+  <data name="WifiNetworkNameLabel" xml:space="preserve">
+    <value>Navn:</value>
+  </data>
+  <data name="WifiNetworkPasswordLabel" xml:space="preserve">
+    <value>Kode:</value>
+  </data>
+  <data name="WifiEmployeeNetworkNameValue" xml:space="preserve">
+    <value>StarkIOT</value>
+  </data>
+  <data name="WifiEmployeeNetworkPasswordValue" xml:space="preserve">
+    <value>Int3rnet4iPads</value>
   </data>
 </root>

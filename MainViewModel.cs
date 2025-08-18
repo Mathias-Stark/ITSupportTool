@@ -82,7 +82,6 @@ namespace ITSupportToolGUI
         public bool IsNorwayServiceDeskVisible { get; private set; }
         public bool IsSwedenServiceDeskVisible { get; private set; }
 
-
         // ==================== Printer Properties ====================
         public ObservableCollection<Printer> AvailablePrinters { get; } = new ObservableCollection<Printer>();
         public string SiteId { get => _siteId; set { _siteId = value; OnPropertyChanged(); } }
@@ -90,8 +89,10 @@ namespace ITSupportToolGUI
         public string PrinterNotice => "OPS: Kan kun tilføje Ricoh printere";
 
 
-        // ==================== UI Properties ====================
+        // ==================== UI Properties (from resources) ====================
         public string? NativeFlagIconPath { get => _nativeFlagIconPath; private set { _nativeFlagIconPath = value; OnPropertyChanged(); } }
+
+        // Tooltips
         public string OpenTicketSystemTip => _resourceManager.GetString("OpenTicketSystemTip") ?? string.Empty;
         public string OpenITMessagesTip => _resourceManager.GetString("OpenITMessagesTip") ?? string.Empty;
         public string OpenRemoteHelpTip => _resourceManager.GetString("OpenRemoteHelpTip") ?? string.Empty;
@@ -99,6 +100,12 @@ namespace ITSupportToolGUI
         public string SwitchToDanishTip => _resourceManager.GetString("SwitchToDanishTip") ?? string.Empty;
         public string SwitchToEnglishTip => _resourceManager.GetString("SwitchToEnglishTip") ?? string.Empty;
         public string RunScriptTip => _resourceManager.GetString("RunScriptTip") ?? string.Empty;
+        public string CopyAllInfoTip => _resourceManager.GetString("CopyInfoTip") ?? string.Empty;
+        public string AddPrinterToolTip => _resourceManager.GetString("AddPrinterToolTip") ?? string.Empty;
+        public string ShowComputerInfoToolTip => _resourceManager.GetString("ShowComputerInfoToolTip") ?? string.Empty;
+        public string ShowSupportToolTip => _resourceManager.GetString("ShowSupportToolTip") ?? string.Empty;
+
+        // Labels and Titles
         public string ComputerNameLabel => _resourceManager.GetString("ComputerNameLabel") ?? string.Empty;
         public string UserNameLabel => _resourceManager.GetString("UsernameLabel") ?? string.Empty;
         public string OsVersionLabel => _resourceManager.GetString("OSVersionLabel") ?? string.Empty;
@@ -112,9 +119,12 @@ namespace ITSupportToolGUI
         public string OpenRemoteHelpLabel => _resourceManager.GetString("OpenRemoteHelpLabel") ?? string.Empty;
         public string OpenPasswordResetLabel => _resourceManager.GetString("OpenPasswordResetLabel") ?? string.Empty;
         public string RunScriptLabel => _resourceManager.GetString("RunScriptLabel") ?? string.Empty;
-        public string CopyAllInfoTip => _resourceManager.GetString("CopyInfoTip") ?? string.Empty;
         public string ComputerInformationTitle => _resourceManager.GetString("ComputerInformationTitle") ?? string.Empty;
+        public string AddPrinterLabel => _resourceManager.GetString("AddPrinterLabel") ?? string.Empty;
+        public string ShowComputerInfoLabel => _resourceManager.GetString("ShowComputerInfoLabel") ?? string.Empty;
+        public string ShowSupportLabel => _resourceManager.GetString("ShowSupportLabel") ?? string.Empty;
 
+        // Wi-Fi Fix View
         public string InstructionsTitle => _resourceManager.GetString("InstructionsTitle") ?? string.Empty;
         public string InstructionsStep1 => _resourceManager.GetString("InstructionsStep1") ?? string.Empty;
         public string InstructionsStep1Body => _resourceManager.GetString("InstructionsStep1Body") ?? string.Empty;
@@ -127,28 +137,28 @@ namespace ITSupportToolGUI
         public string InstructionsExampleUsername => _resourceManager.GetString("InstructionsExampleUsername") ?? string.Empty;
         public string InstructionsExamplePassword => _resourceManager.GetString("InstructionsExamplePassword") ?? string.Empty;
 
-        public string AddPrinterLabel => _resourceManager.GetString("AddPrinterLabel") ?? string.Empty;
-        public string AddPrinterToolTip => _resourceManager.GetString("AddPrinterToolTip") ?? string.Empty;
+        // Printer View
         public string PrinterViewTitle => _resourceManager.GetString("PrinterViewTitle") ?? string.Empty;
         public string SiteIdLabel => _resourceManager.GetString("SiteIdLabel") ?? string.Empty;
         public string SearchButtonText => _resourceManager.GetString("SearchButtonText") ?? string.Empty;
         public string AddSelectedButtonText => _resourceManager.GetString("AddSelectedButtonText") ?? string.Empty;
 
-        public string ServiceDeskTitle => _resourceManager.GetString("ServiceDeskTitle") ?? string.Empty;
+        // Service Desk View
+        public string SupportTitle => _resourceManager.GetString("SupportTitle") ?? string.Empty;
         public string ServiceDeskHours => _resourceManager.GetString("ServiceDeskHours") ?? string.Empty;
-        public string ServiceDeskDenmarkPhone => _resourceManager.GetString("ServiceDeskDenmarkPhone") ?? string.Empty;
-        public string ServiceDeskDenmarkEmail => _resourceManager.GetString("ServiceDeskDenmarkEmail") ?? string.Empty;
-        public string ServiceDeskNorwayPhone => _resourceManager.GetString("ServiceDeskNorwayPhone") ?? string.Empty;
-        public string ServiceDeskNorwayEmail => _resourceManager.GetString("ServiceDeskNorwayEmail") ?? string.Empty;
-        public string ServiceDeskSwedenPhone => _resourceManager.GetString("ServiceDeskSwedenPhone") ?? string.Empty;
-        public string ServiceDeskSwedenEmail => _resourceManager.GetString("ServiceDeskSwedenEmail") ?? string.Empty;
-        public string ShowComputerInfoLabel => _resourceManager.GetString("ShowComputerInfoLabel") ?? string.Empty;
-        public string ShowComputerInfoToolTip => _resourceManager.GetString("ShowComputerInfoToolTip") ?? string.Empty;
-        public string ServiceDeskDenmarkTitle => _resourceManager.GetString("ServiceDeskDenmarkTitle") ?? string.Empty;
-        public string ServiceDeskNorwayTitle => _resourceManager.GetString("ServiceDeskNorwayTitle") ?? string.Empty;
-        public string ServiceDeskSwedenTitle => _resourceManager.GetString("ServiceDeskSwedenTitle") ?? string.Empty;
-        public string ShowServiceDeskLabel => _resourceManager.GetString("ShowServiceDeskLabel") ?? string.Empty;
-        public string ShowServiceDeskToolTip => _resourceManager.GetString("ShowServiceDeskToolTip") ?? string.Empty;
+        public string ServiceDeskDKPhone => _resourceManager.GetString("ServiceDeskDKPhone") ?? string.Empty;
+        public string ServiceDeskDKEmail => _resourceManager.GetString("ServiceDeskDKEmail") ?? string.Empty;
+        public string ServiceDeskNOPhone => _resourceManager.GetString("ServiceDeskNOPhone") ?? string.Empty;
+        public string ServiceDeskNOEmail => _resourceManager.GetString("ServiceDeskNOEmail") ?? string.Empty;
+        public string ServiceDeskSEPhone => _resourceManager.GetString("ServiceDeskSEPhone") ?? string.Empty;
+        public string ServiceDeskSEEmail => _resourceManager.GetString("ServiceDeskSEEmail") ?? string.Empty;
+
+        // Wi-Fi Info Properties
+        public string WifiCardTitle => _resourceManager.GetString("WifiCardTitle") ?? string.Empty;
+        public string WifiNetworkNameLabel => _resourceManager.GetString("WifiNetworkNameLabel") ?? string.Empty;
+        public string WifiNetworkPasswordLabel => _resourceManager.GetString("WifiNetworkPasswordLabel") ?? string.Empty;
+        public string WifiEmployeeNetworkNameValue => _resourceManager.GetString("WifiEmployeeNetworkNameValue") ?? string.Empty;
+        public string WifiEmployeeNetworkPasswordValue => _resourceManager.GetString("WifiEmployeeNetworkPasswordValue") ?? string.Empty;
 
 
         // ==================== Initialization ====================
