@@ -39,7 +39,7 @@ jobs:
     - name: Package Release
       # This step also only runs on a tag push
       if: startsWith(github.ref, 'refs/tags/')
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ITSupportTool-Release
         path: ./release
