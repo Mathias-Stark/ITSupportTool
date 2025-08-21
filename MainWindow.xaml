@@ -212,62 +212,8 @@
                 <StackPanel x:Name="ServiceDeskPanel" Visibility="{Binding IsServiceDeskViewVisible, Converter={StaticResource BoolToVis}}">
                     <TextBlock Text="{Binding ServiceDeskTitle, Mode=OneWay}" Margin="10,10,0,7" FontWeight="Bold" FontSize="20" Foreground="#0d1d41"/>
 
-                    <!-- Denmark Service Desk -->
-                    <Border Style="{StaticResource CardBorderStyle}" Visibility="{Binding IsDenmarkServiceDeskVisible, Converter={StaticResource BoolToVis}}">
-                        <StackPanel>
-                            <TextBlock Text="{Binding ServiceDeskLabel, Mode=OneWay}" Style="{StaticResource CardTitleStyle}"/>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="🕒" Style="{StaticResource IconTextStyle}"/>
-                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServiceDeskHours, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
-
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="📞" Style="{StaticResource IconTextStyle}" Margin="0,5,10,5"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
-
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="📧" Style="{StaticResource IconTextStyle}"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Norway Service Desk -->
-                    <Border Style="{StaticResource CardBorderStyle}" Visibility="{Binding IsNorwayServiceDeskVisible, Converter={StaticResource BoolToVis}}">
-                        <StackPanel>
-                            <TextBlock Text="{Binding ServiceDeskLabel, Mode=OneWay}" Style="{StaticResource CardTitleStyle}"/>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="🕒" Style="{StaticResource IconTextStyle}"/>
-                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServiceDeskHours, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
-
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="📞" Style="{StaticResource IconTextStyle}" Margin="0,5,10,5"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
-
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="📧" Style="{StaticResource IconTextStyle}"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Sweden Service Desk -->
-                    <Border Style="{StaticResource CardBorderStyle}" Visibility="{Binding IsSwedenServiceDeskVisible, Converter={StaticResource BoolToVis}}">
+                    <!-- Service Desk Card -->
+                    <Border Style="{StaticResource CardBorderStyle}">
                         <StackPanel>
                             <TextBlock Text="{Binding ServiceDeskLabel, Mode=OneWay}" Style="{StaticResource CardTitleStyle}"/>
                             <Grid>
