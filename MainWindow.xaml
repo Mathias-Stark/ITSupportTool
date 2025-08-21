@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ITSupportToolGUI"
         xmlns:converters="clr-namespace:ITSupportToolGUI.Converters"
+        xmlns:views="clr-namespace:ITSupportToolGUI.Views"
         mc:Ignorable="d"
         Title="IT Support Tool"
-        SizeToContent="Height" 
         Width="{Binding WindowWidth, Mode=TwoWay}"
+        Height="550"
         MinHeight="380" 
         MinWidth="510"
         Icon="Resources/IT-Support_Tool.ico"
@@ -398,45 +399,6 @@
                     </Grid>
                 </StackPanel>
 
-                <!-- View 2: Script Instructions Panel -->
-                <StackPanel x:Name="InstructionsPanel" Visibility="{Binding IsInstructionsViewVisible, Converter={StaticResource BoolToVis}}">
-                    <Label Content="{Binding InstructionsTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
-
-                    <TextBlock Text="{Binding InstructionsStep1}" Margin="15,10,15,0" FontWeight="Bold" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding InstructionsStep1Body}" Margin="15,2,15,5" TextWrapping="Wrap"/>
-
-                    <Separator Margin="15,10"/>
-
-                    <TextBlock Text="{Binding InstructionsStep2}" Margin="15,5,15,0" FontWeight="Bold" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding InstructionsStep2Body}" Margin="15,2,15,5" TextWrapping="Wrap"/>
-
-                    <Button Command="{Binding ExecuteWifiFixScriptCommand}" Style="{StaticResource LogoButtonStyle}" HorizontalAlignment="Left" Margin="15,5,15,10">
-                        <Image Source="/Resources/Wifi-Login.jpg" MaxWidth="500" />
-                    </Button>
-
-                    <StackPanel Margin="30,0,15,5">
-                        <DockPanel Margin="0,0,0,5">
-                            <TextBlock Text="• " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding InstructionsBullet2}" TextWrapping="Wrap"/>
-                        </DockPanel>
-
-                        <StackPanel Margin="15,5,0,5">
-                            <TextBlock Text="{Binding InstructionsExampleUsername}" TextWrapping="Wrap" FontStyle="Italic"/>
-                            <TextBlock Text="{Binding InstructionsExamplePassword}" TextWrapping="Wrap" FontStyle="Italic" Margin="0,2,0,0"/>
-                        </StackPanel>
-
-                        <DockPanel Margin="0,5,0,5">
-                            <TextBlock Text="• " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding InstructionsBullet3}" TextWrapping="Wrap"/>
-                        </DockPanel>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
-                        <Button Content="{Binding ExecuteScriptButtonText}" Command="{Binding ExecuteWifiFixScriptCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="100"/>
-                        <Button Content="{Binding BackButtonText}" Command="{Binding BackToInfoViewCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="100" Margin="10,5"/>
-                    </StackPanel>
-                </StackPanel>
-
                 <!-- View 3: Printer Panel -->
                 <StackPanel x:Name="PrinterPanel" Visibility="{Binding IsPrinterViewVisible, Converter={StaticResource BoolToVis}}">
                     <Label Content="{Binding PrinterViewTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
@@ -495,5 +457,6 @@
                         Visibility="{Binding IsComputerInfoViewVisible, Converter={StaticResource BoolToVis}}"/>
             </Grid>
         </ScrollViewer>
+        <views:InfoWindow DataContext="{Binding InfoWindowViewModel}" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

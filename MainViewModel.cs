@@ -1,5 +1,7 @@
 ﻿// ==================== Using Statements ====================
 using ITSupportToolGUI.Models;
+using ITSupportToolGUI.ViewModels;
+using ITSupportToolGUI.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -26,9 +28,9 @@ namespace ITSupportToolGUI
     {
         // ==================== Member Variables ====================
         private readonly ResourceManager _resourceManager = new ResourceManager("ITSupportToolGUI.Resources.Strings", typeof(MainViewModel).Assembly);
+        private InfoWindowViewModel _infoWindowViewModel;
         private bool _isServiceDeskViewVisible = true;
         private bool _isComputerInfoViewVisible = false;
-        private bool _isInstructionsViewVisible = false;
         private bool _isPrinterViewVisible = false;
         private int _windowWidth = 520; // Initial width
         private string _siteId = string.Empty;
@@ -59,9 +61,9 @@ namespace ITSupportToolGUI
 
 
         // ==================== Visibility & Layout Properties ====================
+        public InfoWindowViewModel InfoWindowViewModel { get => _infoWindowViewModel; set { _infoWindowViewModel = value; OnPropertyChanged(); } }
         public bool IsServiceDeskViewVisible { get => _isServiceDeskViewVisible; set { _isServiceDeskViewVisible = value; OnPropertyChanged(); } }
         public bool IsComputerInfoViewVisible { get => _isComputerInfoViewVisible; set { _isComputerInfoViewVisible = value; OnPropertyChanged(); } }
-        public bool IsInstructionsViewVisible { get => _isInstructionsViewVisible; set { _isInstructionsViewVisible = value; OnPropertyChanged(); } }
         public bool IsPrinterViewVisible { get => _isPrinterViewVisible; set { _isPrinterViewVisible = value; OnPropertyChanged(); } }
         public int WindowWidth { get => _windowWidth; set { _windowWidth = value; OnPropertyChanged(); } }
 
@@ -160,8 +162,9 @@ namespace ITSupportToolGUI
         // ==================== Initialization ====================
         public MainViewModel()
         {
+            InfoWindowViewModel = new InfoWindowViewModel();
             CopyToClipboardCommand = new RelayCommand(CopyToClipboard);
-            RunPowerShellScriptCommand = new RelayCommand(HandleWifiFixClick);
+            RunPowerShellScriptCommand = new RelayCommand(ShowWifiFixWindow);
             ExecuteWifiFixScriptCommand = new RelayCommand(RunWifiFixScript);
             BackToInfoViewCommand = new RelayCommand(ShowInfoView);
             CopyAllInfoCommand = new RelayCommand(_ => CopyInfo());
@@ -179,26 +182,6 @@ namespace ITSupportToolGUI
         }
 
         // ==================== View Switching Logic ====================
-        private void HandleWifiFixClick(object? parameter)
-        {
-            if (IsInstructionsViewVisible)
-            {
-                RunWifiFixScript(null);
-            }
-            else
-            {
-                ShowScriptInstructionsView(null);
-            }
-        }
-
-        private void ShowScriptInstructionsView(object? parameter)
-        {
-            WindowWidth = 570; // Expand width
-            IsServiceDeskViewVisible = false;
-            IsComputerInfoViewVisible = false;
-            IsPrinterViewVisible = false;
-            IsInstructionsViewVisible = true;
-        }
         private void ShowInfoView(object? parameter)
         {
             WindowWidth = 520; // Shrink width back to normal
@@ -222,8 +205,14 @@ namespace ITSupportToolGUI
             WindowWidth = 800; // Expand width for printer view
             IsServiceDeskViewVisible = false;
             IsComputerInfoViewVisible = false;
-            IsInstructionsViewVisible = false;
             IsPrinterViewVisible = true;
+        }
+
+        private void ShowWifiFixWindow(object? parameter)
+        {
+            InfoWindowViewModel.Title = InstructionsTitle;
+            InfoWindowViewModel.Content = new WifiFixView();
+            InfoWindowViewModel.IsVisible = true;
         }
 
         // ==================== Logic for Button Actions ====================
