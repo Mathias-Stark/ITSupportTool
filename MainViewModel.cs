@@ -700,11 +700,8 @@ namespace ITSupportToolGUI
             IsVpnConnected = IsFortiClientConnected();
             OnPropertyChanged(nameof(IsVpnConnected));
 
-            var vpnStatusLabel = _resourceManager.GetString("VPNStatusLabel") ?? "VPN Status";
-            var vpnIpAddressLabel = _resourceManager.GetString("VPNIPAddressLabel") ?? "VPN IP Address";
-
-            // Remove existing VPN info
-            var vpnItems = ComputerInfoItems.Where(i => i.Label == vpnStatusLabel || i.Label == vpnIpAddressLabel).ToList();
+            // Remove existing VPN info using the language-independent Id
+            var vpnItems = ComputerInfoItems.Where(i => i.Id == "vpn-status" || i.Id == "vpn-ip").ToList();
             foreach (var item in vpnItems)
             {
                 ComputerInfoItems.Remove(item);
@@ -712,12 +709,10 @@ namespace ITSupportToolGUI
 
             if (IsVpnConnected)
             {
-                ComputerInfoItems.Add(new InfoItem { Label = vpnStatusLabel, Value = _resourceManager.GetString("FortiClientConnected") ?? "Connected" });
-                ComputerInfoItems.Add(new InfoItem { Label = vpnIpAddressLabel, Value = GetVpnIpAddress() ?? "N/A" });
-            }
-            else
-            {
-                ComputerInfoItems.Add(new InfoItem { Label = vpnStatusLabel, Value = _resourceManager.GetString("FortiClientDisconnected") ?? "Disconnected" });
+                var vpnStatusLabel = _resourceManager.GetString("VPNStatusLabel") ?? "VPN Status";
+                var vpnIpAddressLabel = _resourceManager.GetString("VPNIPAddressLabel") ?? "VPN IP Address";
+                ComputerInfoItems.Add(new InfoItem { Id = "vpn-status", Label = vpnStatusLabel, Value = _resourceManager.GetString("FortiClientConnected") ?? "Connected" });
+                ComputerInfoItems.Add(new InfoItem { Id = "vpn-ip", Label = vpnIpAddressLabel, Value = GetVpnIpAddress() ?? "N/A" });
             }
         }
 

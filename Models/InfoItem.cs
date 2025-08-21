@@ -19,6 +19,8 @@ namespace ITSupportToolGUI.Models
             set { _value = value; OnPropertyChanged(); }
         }
 
+        public string Id { get; set; }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
