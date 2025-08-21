@@ -80,7 +80,22 @@ namespace ITSupportToolGUI
         public ObservableCollection<Printer> AvailablePrinters { get; } = new ObservableCollection<Printer>();
         public string SiteId { get => _siteId; set { _siteId = value; OnPropertyChanged(); } }
         public string PrinterStatusMessage { get => _printerStatusMessage; set { _printerStatusMessage = value; OnPropertyChanged(); } }
-        public string PrinterNotice => IsSwedishUser ? "Indtast site-ID for at finde printere." : "OPS: Kan kun tilføje Ricoh printere";
+        public string PrinterNotice
+        {
+            get
+            {
+                if (IsSwedishUser)
+                {
+                    // TODO: The resource string "PrinterStatusEnterSiteId" should be made generic (e.g., "Enter Site ID to find printers.").
+                    return _resourceManager.GetString("PrinterStatusEnterSiteId") ?? "Indtast site-ID for at finde printere.";
+                }
+                else
+                {
+                    // TODO: A new resource string "PrinterNoticeRicoh" is needed for "OPS: Kan kun tilføje Ricoh printere".
+                    return _resourceManager.GetString("PrinterNoticeRicoh") ?? "OPS: Kan kun tilføje Ricoh printere";
+                }
+            }
+        }
 
 
         // ==================== UI Properties (from resources) ====================
@@ -396,11 +411,13 @@ namespace ITSupportToolGUI
 
                     if (!AvailablePrinters.Any())
                     {
-                        PrinterStatusMessage = _resourceManager.GetString("PrinterStatusNotFound") ?? "No printers found.";
+                        // TODO: The resource string "PrinterStatusNotFound" should be made generic (e.g., "No printers found for that Site ID.").
+                        PrinterStatusMessage = _resourceManager.GetString("PrinterStatusNotFound") ?? "No printers found for that Site ID.";
                     }
                     else
                     {
-                        PrinterStatusMessage = $"Found {AvailablePrinters.Count} printers.";
+                        // TODO: The resource string "PrinterStatusFound" should be made generic (e.g., "Found {0} printers.").
+                        PrinterStatusMessage = string.Format(_resourceManager.GetString("PrinterStatusFound") ?? "Found {0} printers.", AvailablePrinters.Count);
                     }
                 });
             }
