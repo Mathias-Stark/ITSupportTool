@@ -12,19 +12,20 @@
         MinHeight="380" 
         MinWidth="510"
         Icon="Resources/IT-Support_Tool.ico"
-        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        Background="#F4F6F8">
 
     <Window.Resources>
         <ResourceDictionary>
             <converters:BooleanToVisibilityConverter x:Key="BoolToVis"/>
 
+            <!-- Main Button Style -->
             <Style x:Key="MainButtonStyle" TargetType="Button">
                 <Setter Property="Background" Value="#FF0E447F" />
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="Padding" Value="10,5" />
-                <Setter Property="Margin" Value="10,5" />
+                <Setter Property="Margin" Value="5" />
                 <Setter Property="Height" Value="30" />
                 <Setter Property="Template">
                     <Setter.Value>
@@ -44,6 +45,8 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!-- Clickable Title Style -->
             <Style x:Key="ClickableTitleStyle" TargetType="Button">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0"/>
@@ -59,6 +62,8 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!-- Logo Button Style -->
             <Style x:Key="LogoButtonStyle" TargetType="Button">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -73,6 +78,8 @@
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style>
+
+            <!-- Copyable Value Style -->
             <Style x:Key="CopyableValueStyle" TargetType="Button">
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -119,6 +126,45 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!-- New Styles for Service Desk View -->
+            <Style x:Key="CardBorderStyle" TargetType="Border">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="#E0E0E0"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Padding" Value="15"/>
+                <Setter Property="Margin" Value="10,5"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="1" Color="#CCCCCC" Opacity="0.3" BlurRadius="5"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="CardTitleStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Foreground" Value="#0d1d41"/>
+                <Setter Property="Margin" Value="0,0,0,10"/>
+            </Style>
+
+            <Style x:Key="SelectableInfoTextStyle" TargetType="TextBox">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+
+            <Style x:Key="IconTextStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI Emoji"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="0,0,10,0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -126,6 +172,8 @@
             <ColumnDefinition Width="Auto" MinWidth="200"/>
             <ColumnDefinition Width="*" MinWidth="310"/>
         </Grid.ColumnDefinitions>
+
+        <!-- Left Navigation Panel -->
         <DockPanel Grid.Column="0" Background="#0d1d41">
             <StackPanel DockPanel.Dock="Bottom" Margin="5,10,0,3">
                 <Grid>
@@ -146,9 +194,9 @@
                     <Image Source="Resources/STARK_Group_RGB_white.png" HorizontalAlignment="Left" Width="190" Height="Auto"/>
                 </Button>
                 <TextBlock Text="IT Support Tool" FontWeight="Bold" FontSize="16" Margin="10,5,5,10" Foreground="#fff"/>
-                <Button x:Name="btnOpenTicketSystem" Content="{Binding OpenTicketSystemLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenTicketSystem_Click" ToolTip="{Binding OpenTicketSystemTip}"/>
-                <Button x:Name="btnOpenITMessages" Content="{Binding OpenITMessagesLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenITMessages_Click" ToolTip="{Binding OpenITMessagesTip}"/>
+                <Button x:Name="btnShowServiceDesk" Content="{Binding ServiceDeskLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding BackToInfoViewCommand}" ToolTip="{Binding ServiceDeskToolTip}"/>
                 <Button x:Name="btnOpenRemoteHelp" Content="{Binding OpenRemoteHelpLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding OpenRemoteHelpCommand}" ToolTip="{Binding OpenRemoteHelpTip}"/>
+                <Button x:Name="btnShowComputerInfo" Content="{Binding ShowComputerInfoLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowComputerInfoViewCommand}" ToolTip="{Binding ShowComputerInfoToolTip}"/>
                 <Button x:Name="btnOpenPasswordReset" Content="{Binding OpenPasswordResetLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenPasswordReset_Click" ToolTip="{Binding OpenPasswordResetTip}"/>
                 <Button x:Name="btnAddPrinter" Content="{Binding AddPrinterLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowPrinterViewCommand}" ToolTip="{Binding AddPrinterToolTip}"
                         Visibility="{Binding IsPrinterButtonVisible, Converter={StaticResource BoolToVis}}"/>
@@ -158,174 +206,190 @@
         </DockPanel>
 
         <!-- Main Content Area -->
-        <Grid Grid.Column="1" Margin="10">
-            <!-- View 1: Computer Information Panel -->
-            <StackPanel x:Name="InfoPanel" Visibility="{Binding IsInfoViewVisible, Converter={StaticResource BoolToVis}}">
-                <Button Style="{StaticResource ClickableTitleStyle}" Command="{Binding CopyAllInfoCommand}" ToolTip="{Binding CopyAllInfoTip}">
-                    <Label Content="{Binding ComputerInformationTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
-                </Button>
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <Grid Margin="10">
+                <!-- Service Desk View -->
+                <StackPanel x:Name="ServiceDeskPanel" Visibility="{Binding IsServiceDeskViewVisible, Converter={StaticResource BoolToVis}}">
+                    <TextBlock Text="{Binding ServiceDeskTitle, Mode=OneWay}" Margin="10,10,0,7" FontWeight="Bold" FontSize="20" Foreground="#0d1d41"/>
 
-                <Grid Margin="10,5,10,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding ComputerNameLabel}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding ComputerName}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding ComputerName}"/>
-                </Grid>
-                <Grid Margin="10,5,10,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding UserNameLabel}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding UserName}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding UserName}"/>
-                </Grid>
-                <Grid Margin="10,5,10,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding OsVersionLabel}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding OsVersion}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding OsVersion}"/>
-                </Grid>
-                <Grid Margin="10,5,10,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding IpAddressLabel}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding IpAddress}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding IpAddress}"/>
-                </Grid>
-                <Grid Margin="10,5,10,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding SsidLabel}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding Ssid}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding Ssid}"/>
-                </Grid>
-                <Grid Margin="10,5,10,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding LastRestartLabel}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding LastRestart}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding LastRestart}"/>
-                </Grid>
-                <Grid Margin="10,5,10,5" Visibility="{Binding IsVpnConnected, Converter={StaticResource BoolToVis}}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding VpnStatusLabel}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding VpnStatus}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding VpnStatus}"/>
-                </Grid>
-                <Grid Margin="10,5,10,5" Visibility="{Binding IsVpnConnected, Converter={StaticResource BoolToVis}}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding VpnIpAddressLabel}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding VpnIpAddress}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding VpnIpAddress}"/>
-                </Grid>
-            </StackPanel>
+                    <!-- Service Desk Card -->
+                    <Border Style="{StaticResource CardBorderStyle}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding ServiceDeskLabel, Mode=OneWay}" Style="{StaticResource CardTitleStyle}"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-            <!-- View 2: Script Instructions Panel -->
-            <StackPanel x:Name="InstructionsPanel" Visibility="{Binding IsInstructionsViewVisible, Converter={StaticResource BoolToVis}}">
-                <Label Content="{Binding InstructionsTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="🕒" Style="{StaticResource IconTextStyle}"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServiceDeskHours, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
 
-                <TextBlock Text="{Binding InstructionsStep1}" Margin="15,10,15,0" FontWeight="Bold" TextWrapping="Wrap"/>
-                <TextBlock Text="{Binding InstructionsStep1Body}" Margin="15,2,15,5" TextWrapping="Wrap"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="📞" Style="{StaticResource IconTextStyle}" Margin="0,5,10,5"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
 
-                <Separator Margin="15,10"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="📧" Style="{StaticResource IconTextStyle}"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
 
-                <TextBlock Text="{Binding InstructionsStep2}" Margin="15,5,15,0" FontWeight="Bold" TextWrapping="Wrap"/>
-                <TextBlock Text="{Binding InstructionsStep2Body}" Margin="15,2,15,5" TextWrapping="Wrap"/>
+                    <!-- Employee Wi-Fi Card -->
+                    <Border Style="{StaticResource CardBorderStyle}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding WifiCardTitle, Mode=OneWay}" Style="{StaticResource CardTitleStyle}"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                <Button Command="{Binding ExecuteWifiFixScriptCommand}" Style="{StaticResource LogoButtonStyle}" HorizontalAlignment="Left" Margin="15,5,15,10">
-                    <Image Source="/Resources/Wifi-Login.jpg" MaxWidth="500" />
-                </Button>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding WifiNetworkNameLabel}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding WifiEmployeeNetworkNameValue, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="5,0,0,0"/>
 
-                <StackPanel Margin="30,0,15,5">
-                    <DockPanel Margin="0,0,0,5">
-                        <TextBlock Text="• " FontWeight="Bold"/>
-                        <TextBlock Text="{Binding InstructionsBullet2}" TextWrapping="Wrap"/>
-                    </DockPanel>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding WifiNetworkPasswordLabel}" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding WifiEmployeeNetworkPasswordValue, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="5,5,0,0"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
 
-                    <StackPanel Margin="15,5,0,5">
-                        <TextBlock Text="{Binding InstructionsExampleUsername}" TextWrapping="Wrap" FontStyle="Italic"/>
-                        <TextBlock Text="{Binding InstructionsExamplePassword}" TextWrapping="Wrap" FontStyle="Italic" Margin="0,2,0,0"/>
+                    <Grid Margin="5,15,5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" x:Name="btnOpenTicketSystem" Content="{Binding OpenTicketSystemLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenTicketSystem_Click" ToolTip="{Binding OpenTicketSystemTip}"/>
+                        <Button Grid.Column="1" x:Name="btnOpenITMessages" Content="{Binding OpenITMessagesLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenITMessages_Click" ToolTip="{Binding OpenITMessagesTip}"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- View 1: Computer Information Panel -->
+                <StackPanel x:Name="ComputerInfoPanel" Visibility="{Binding IsComputerInfoViewVisible, Converter={StaticResource BoolToVis}}">
+                    <Button Style="{StaticResource ClickableTitleStyle}" Command="{Binding CopyAllInfoCommand}" ToolTip="{Binding CopyAllInfoTip}">
+                        <Label Content="{Binding ComputerInformationTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
+                    </Button>
+
+                    <ItemsControl ItemsSource="{Binding ComputerInfoItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="10,5,10,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{Binding Label}" VerticalAlignment="Center"/>
+                                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding Value}" Command="{Binding DataContext.CopyToClipboardCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding Value}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <!-- View 2: Script Instructions Panel -->
+                <StackPanel x:Name="InstructionsPanel" Visibility="{Binding IsInstructionsViewVisible, Converter={StaticResource BoolToVis}}">
+                    <Label Content="{Binding InstructionsTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
+
+                    <TextBlock Text="{Binding InstructionsStep1}" Margin="15,10,15,0" FontWeight="Bold" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding InstructionsStep1Body}" Margin="15,2,15,5" TextWrapping="Wrap"/>
+
+                    <Separator Margin="15,10"/>
+
+                    <TextBlock Text="{Binding InstructionsStep2}" Margin="15,5,15,0" FontWeight="Bold" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding InstructionsStep2Body}" Margin="15,2,15,5" TextWrapping="Wrap"/>
+
+                    <Button Command="{Binding ExecuteWifiFixScriptCommand}" Style="{StaticResource LogoButtonStyle}" HorizontalAlignment="Left" Margin="15,5,15,10">
+                        <Image Source="/Resources/Wifi-Login.jpg" MaxWidth="500" />
+                    </Button>
+
+                    <StackPanel Margin="30,0,15,5">
+                        <DockPanel Margin="0,0,0,5">
+                            <TextBlock Text="• " FontWeight="Bold"/>
+                            <TextBlock Text="{Binding InstructionsBullet2}" TextWrapping="Wrap"/>
+                        </DockPanel>
+
+                        <StackPanel Margin="15,5,0,5">
+                            <TextBlock Text="{Binding InstructionsExampleUsername}" TextWrapping="Wrap" FontStyle="Italic"/>
+                            <TextBlock Text="{Binding InstructionsExamplePassword}" TextWrapping="Wrap" FontStyle="Italic" Margin="0,2,0,0"/>
+                        </StackPanel>
+
+                        <DockPanel Margin="0,5,0,5">
+                            <TextBlock Text="• " FontWeight="Bold"/>
+                            <TextBlock Text="{Binding InstructionsBullet3}" TextWrapping="Wrap"/>
+                        </DockPanel>
                     </StackPanel>
 
-                    <DockPanel Margin="0,5,0,5">
-                        <TextBlock Text="• " FontWeight="Bold"/>
-                        <TextBlock Text="{Binding InstructionsBullet3}" TextWrapping="Wrap"/>
-                    </DockPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
+                        <Button Content="{Binding ExecuteScriptButtonText}" Command="{Binding ExecuteWifiFixScriptCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="100"/>
+                        <Button Content="{Binding BackButtonText}" Command="{Binding BackToInfoViewCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="100" Margin="10,5"/>
+                    </StackPanel>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
-                    <Button Content="{Binding ExecuteScriptButtonText}" Command="{Binding ExecuteWifiFixScriptCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="100"/>
-                    <Button Content="{Binding BackButtonText}" Command="{Binding BackToInfoViewCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="100" Margin="10,5"/>
+                <!-- View 3: Printer Panel -->
+                <StackPanel x:Name="PrinterPanel" Visibility="{Binding IsPrinterViewVisible, Converter={StaticResource BoolToVis}}">
+                    <Label Content="{Binding PrinterViewTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
+
+                    <Border Background="#FFFBE6" BorderBrush="#FFC107" BorderThickness="1" CornerRadius="3" Margin="15,5,15,10" Padding="10">
+                        <TextBlock Text="{Binding PrinterNotice}" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#B38600"/>
+                    </Border>
+
+                    <Grid Margin="15,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding SiteIdLabel}" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Text="{Binding SiteId, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="5,0" FontSize="14">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding SearchPrintersCommand}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Button Grid.Column="2" Content="{Binding SearchButtonText}" Command="{Binding SearchPrintersCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="80" Margin="5,0,0,0"/>
+                    </Grid>
+
+                    <TextBlock Text="{Binding PrinterStatusMessage}" Margin="15,0,15,10" FontStyle="Italic"/>
+
+                    <ListView ItemsSource="{Binding AvailablePrinters}" Margin="15,5" MaxHeight="250">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Vælg" Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Printernavn" DisplayMemberBinding="{Binding Name}" Width="450"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
+                        <Button Content="{Binding AddSelectedButtonText}" Command="{Binding AddSelectedPrintersCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="120"/>
+                        <Button Content="{Binding BackButtonText}" Command="{Binding BackToInfoViewCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="100" Margin="10,5"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
 
-            <!-- View 3: Printer Panel -->
-            <StackPanel x:Name="PrinterPanel" Visibility="{Binding IsPrinterViewVisible, Converter={StaticResource BoolToVis}}">
-                <Label Content="{Binding PrinterViewTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
-
-                <Border Background="#FFFBE6" BorderBrush="#FFC107" BorderThickness="1" CornerRadius="3" Margin="15,5,15,10" Padding="10">
-                    <TextBlock Text="{Binding PrinterNotice}" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#B38600"/>
-                </Border>
-
-                <Grid Margin="15,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding SiteIdLabel}" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" Text="{Binding SiteId, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="5,0" FontSize="14">
-                        <TextBox.InputBindings>
-                            <KeyBinding Key="Enter" Command="{Binding SearchPrintersCommand}"/>
-                        </TextBox.InputBindings>
-                    </TextBox>
-                    <Button Grid.Column="2" Content="{Binding SearchButtonText}" Command="{Binding SearchPrintersCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="80" Margin="5,0,0,0"/>
-                </Grid>
-
-                <TextBlock Text="{Binding PrinterStatusMessage}" Margin="15,0,15,10" FontStyle="Italic"/>
-
-                <ListView ItemsSource="{Binding AvailablePrinters}" Margin="15,5" MaxHeight="250">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Vælg" Width="50">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Printernavn" DisplayMemberBinding="{Binding Name}" Width="450"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
-                <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
-                    <Button Content="{Binding AddSelectedButtonText}" Command="{Binding AddSelectedPrintersCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="120"/>
-                    <Button Content="{Binding BackButtonText}" Command="{Binding BackToInfoViewCommand}" Style="{StaticResource MainButtonStyle}" MinWidth="100" Margin="10,5"/>
-                </StackPanel>
-            </StackPanel>
-
-            <!-- Secret Easter Egg Button -->
-            <Button x:Name="secretButton" 
-                    Width="20" Height="20" 
-                    Opacity="0" 
-                    Click="SecretButton_Click" 
-                    HorizontalAlignment="Right" 
-                    VerticalAlignment="Bottom" 
-                    Margin="0,0,0,-5" 
-                    Cursor="Hand"
-                    Visibility="{Binding IsInfoViewVisible, Converter={StaticResource BoolToVis}}"/>
-        </Grid>
+                <!-- Secret Easter Egg Button -->
+                <Button x:Name="secretButton" 
+                        Width="20" Height="20" 
+                        Opacity="0" 
+                        Click="SecretButton_Click" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Bottom" 
+                        Margin="0,0,0,-5" 
+                        Cursor="Hand"
+                        Visibility="{Binding IsComputerInfoViewVisible, Converter={StaticResource BoolToVis}}"/>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>

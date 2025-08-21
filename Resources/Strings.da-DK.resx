@@ -285,4 +285,49 @@
   <data name="PrinterStatusFinished" xml:space="preserve">
     <value>Installationen er færdig.</value>
   </data>
+  <data name="ServiceDeskTitle" xml:space="preserve">
+    <value>IT Support information</value>
+  </data>
+  <data name="ServiceDeskHours" xml:space="preserve">
+    <value>Mandag – fredag: 06:00–17:00</value>
+  </data>
+  <data name="ShowComputerInfoLabel" xml:space="preserve">
+    <value>Computerinformation</value>
+  </data>
+  <data name="ShowComputerInfoToolTip" xml:space="preserve">
+    <value>Vis detaljerede oplysninger om din computer.</value>
+  </data>
+  <data name="ServiceDeskCardTitle" xml:space="preserve">
+    <value>IT Support Information</value>
+  </data>
+  <data name="ServiceDeskLabel" xml:space="preserve">
+    <value>IT Support</value>
+  </data>
+  <data name="ServiceDeskToolTip" xml:space="preserve">
+    <value>Vis IT Support kontaktoplysninger.</value>
+  </data>
+  <data name="ServiceDeskPhone" xml:space="preserve">
+    <value>Telefon: 8252 6900</value>
+  </data>
+  <data name="ServiceDeskEmail" xml:space="preserve">
+    <value>Email: itsupport@stark.dk</value>
+  </data>
+  <data name="WifiCardTitle" xml:space="preserve">
+    <value>Wifi til STARK Mobiltelefoner</value>
+  </data>
+  <data name="WifiNetworkNameLabel" xml:space="preserve">
+    <value>Navn:</value>
+  </data>
+  <data name="WifiNetworkPasswordLabel" xml:space="preserve">
+    <value>Kode:</value>
+  </data>
+  <data name="WifiEmployeeNetworkNameValue" xml:space="preserve">
+    <value>StarkIOT</value>
+  </data>
+  <data name="WifiEmployeeNetworkPasswordValue" xml:space="preserve">
+    <value>Int3rnet4iPads</value>
+  </data>
+  <data name="ITMessagesURL" xml:space="preserve">
+    <value>https://starkworkspace.sharepoint.com/sites/toolboxstarkdk/_layouts/15/news.aspx?title=IT%20Servicemeddelelser&amp;newsSource=3&amp;instanceId=f0432ad5-c752-4696-bb24-3006c93c8e22&amp;webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&amp;serverRelativeUrl=%2Fsites%2Ftoolboxstarkdk%2FSitePages%2FHome.aspx&amp;pagesListId=1485bbde-3d57-4a10-8d68-ff781af0d722</value>
+  </data>
 </root>

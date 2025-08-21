@@ -26,7 +26,8 @@ namespace ITSupportToolGUI
     {
         // ==================== Member Variables ====================
         private readonly ResourceManager _resourceManager = new ResourceManager("ITSupportToolGUI.Resources.Strings", typeof(MainViewModel).Assembly);
-        private bool _isInfoViewVisible = true;
+        private bool _isServiceDeskViewVisible = true;
+        private bool _isComputerInfoViewVisible = false;
         private bool _isInstructionsViewVisible = false;
         private bool _isPrinterViewVisible = false;
         private int _windowWidth = 520; // Initial width
@@ -51,27 +52,22 @@ namespace ITSupportToolGUI
         public ICommand BackToInfoViewCommand { get; }
         public ICommand CopyAllInfoCommand { get; }
         public ICommand ShowPrinterViewCommand { get; }
+        public ICommand ShowComputerInfoViewCommand { get; }
         public ICommand SearchPrintersCommand { get; }
         public ICommand AddSelectedPrintersCommand { get; }
         public ICommand OpenRemoteHelpCommand { get; }
 
 
         // ==================== Visibility & Layout Properties ====================
-        public bool IsInfoViewVisible { get => _isInfoViewVisible; set { _isInfoViewVisible = value; OnPropertyChanged(); } }
+        public bool IsServiceDeskViewVisible { get => _isServiceDeskViewVisible; set { _isServiceDeskViewVisible = value; OnPropertyChanged(); } }
+        public bool IsComputerInfoViewVisible { get => _isComputerInfoViewVisible; set { _isComputerInfoViewVisible = value; OnPropertyChanged(); } }
         public bool IsInstructionsViewVisible { get => _isInstructionsViewVisible; set { _isInstructionsViewVisible = value; OnPropertyChanged(); } }
         public bool IsPrinterViewVisible { get => _isPrinterViewVisible; set { _isPrinterViewVisible = value; OnPropertyChanged(); } }
         public int WindowWidth { get => _windowWidth; set { _windowWidth = value; OnPropertyChanged(); } }
 
 
         // ==================== System Information Properties ====================
-        public string? ComputerName { get; private set; }
-        public string? UserName { get; private set; }
-        public string? OsVersion { get; private set; }
-        public string? Ssid { get; private set; }
-        public string? IpAddress { get; private set; }
-        public string? VpnStatus { get; private set; }
-        public string? VpnIpAddress { get; private set; }
-        public string? LastRestart { get; private set; }
+        public ObservableCollection<InfoItem> ComputerInfoItems { get; } = new ObservableCollection<InfoItem>();
         public bool IsVpnConnected { get; private set; }
         public bool IsPowerShellButtonVisible { get; private set; }
         public bool IsPrinterButtonVisible { get; private set; }
@@ -83,8 +79,10 @@ namespace ITSupportToolGUI
         public string PrinterNotice => "OPS: Kan kun tilføje Ricoh printere";
 
 
-        // ==================== UI Properties ====================
+        // ==================== UI Properties (from resources) ====================
         public string? NativeFlagIconPath { get => _nativeFlagIconPath; private set { _nativeFlagIconPath = value; OnPropertyChanged(); } }
+
+        // Tooltips
         public string OpenTicketSystemTip => _resourceManager.GetString("OpenTicketSystemTip") ?? string.Empty;
         public string OpenITMessagesTip => _resourceManager.GetString("OpenITMessagesTip") ?? string.Empty;
         public string OpenRemoteHelpTip => _resourceManager.GetString("OpenRemoteHelpTip") ?? string.Empty;
@@ -92,22 +90,23 @@ namespace ITSupportToolGUI
         public string SwitchToDanishTip => _resourceManager.GetString("SwitchToDanishTip") ?? string.Empty;
         public string SwitchToEnglishTip => _resourceManager.GetString("SwitchToEnglishTip") ?? string.Empty;
         public string RunScriptTip => _resourceManager.GetString("RunScriptTip") ?? string.Empty;
-        public string ComputerNameLabel => _resourceManager.GetString("ComputerNameLabel") ?? string.Empty;
-        public string UserNameLabel => _resourceManager.GetString("UsernameLabel") ?? string.Empty;
-        public string OsVersionLabel => _resourceManager.GetString("OSVersionLabel") ?? string.Empty;
-        public string SsidLabel => _resourceManager.GetString("SSIDLabel") ?? string.Empty;
-        public string VpnStatusLabel => _resourceManager.GetString("VPNStatusLabel") ?? string.Empty;
-        public string IpAddressLabel => _resourceManager.GetString("IPAddressLabel") ?? string.Empty;
-        public string VpnIpAddressLabel => _resourceManager.GetString("VPNIPAddressLabel") ?? string.Empty;
-        public string LastRestartLabel => _resourceManager.GetString("LastRestartLabel") ?? string.Empty;
+        public string CopyAllInfoTip => _resourceManager.GetString("CopyInfoTip") ?? string.Empty;
+        public string AddPrinterToolTip => _resourceManager.GetString("AddPrinterToolTip") ?? string.Empty;
+        public string ShowComputerInfoToolTip => _resourceManager.GetString("ShowComputerInfoToolTip") ?? string.Empty;
+        public string ShowSupportToolTip => _resourceManager.GetString("ShowSupportToolTip") ?? string.Empty;
+
+        // Labels and Titles
         public string OpenTicketSystemLabel => _resourceManager.GetString("OpenTicketSystemLabel") ?? string.Empty;
         public string OpenITMessagesLabel => _resourceManager.GetString("OpenITMessagesLabel") ?? string.Empty;
         public string OpenRemoteHelpLabel => _resourceManager.GetString("OpenRemoteHelpLabel") ?? string.Empty;
         public string OpenPasswordResetLabel => _resourceManager.GetString("OpenPasswordResetLabel") ?? string.Empty;
         public string RunScriptLabel => _resourceManager.GetString("RunScriptLabel") ?? string.Empty;
-        public string CopyAllInfoTip => _resourceManager.GetString("CopyInfoTip") ?? string.Empty;
         public string ComputerInformationTitle => _resourceManager.GetString("ComputerInformationTitle") ?? string.Empty;
+        public string AddPrinterLabel => _resourceManager.GetString("AddPrinterLabel") ?? string.Empty;
+        public string ShowComputerInfoLabel => _resourceManager.GetString("ShowComputerInfoLabel") ?? string.Empty;
+        public string ServiceDeskLabel => _resourceManager.GetString("ServiceDeskLabel") ?? string.Empty;
 
+        // Wi-Fi Fix View
         public string InstructionsTitle => _resourceManager.GetString("InstructionsTitle") ?? string.Empty;
         public string InstructionsStep1 => _resourceManager.GetString("InstructionsStep1") ?? string.Empty;
         public string InstructionsStep1Body => _resourceManager.GetString("InstructionsStep1Body") ?? string.Empty;
@@ -120,12 +119,24 @@ namespace ITSupportToolGUI
         public string InstructionsExampleUsername => _resourceManager.GetString("InstructionsExampleUsername") ?? string.Empty;
         public string InstructionsExamplePassword => _resourceManager.GetString("InstructionsExamplePassword") ?? string.Empty;
 
-        public string AddPrinterLabel => _resourceManager.GetString("AddPrinterLabel") ?? string.Empty;
-        public string AddPrinterToolTip => _resourceManager.GetString("AddPrinterToolTip") ?? string.Empty;
+        // Printer View
         public string PrinterViewTitle => _resourceManager.GetString("PrinterViewTitle") ?? string.Empty;
         public string SiteIdLabel => _resourceManager.GetString("SiteIdLabel") ?? string.Empty;
         public string SearchButtonText => _resourceManager.GetString("SearchButtonText") ?? string.Empty;
         public string AddSelectedButtonText => _resourceManager.GetString("AddSelectedButtonText") ?? string.Empty;
+
+        // Service Desk View (Consolidated)
+        public string ServiceDeskTitle => _resourceManager.GetString("ServiceDeskTitle") ?? string.Empty;
+        public string ServiceDeskHours => _resourceManager.GetString("ServiceDeskHours") ?? string.Empty;
+        public string ServiceDeskPhone => _resourceManager.GetString("ServiceDeskPhone") ?? string.Empty;
+        public string ServiceDeskEmail => _resourceManager.GetString("ServiceDeskEmail") ?? string.Empty;
+
+        // Wi-Fi Info Properties
+        public string WifiCardTitle => _resourceManager.GetString("WifiCardTitle") ?? string.Empty;
+        public string WifiNetworkNameLabel => _resourceManager.GetString("WifiNetworkNameLabel") ?? string.Empty;
+        public string WifiNetworkPasswordLabel => _resourceManager.GetString("WifiNetworkPasswordLabel") ?? string.Empty;
+        public string WifiEmployeeNetworkNameValue => _resourceManager.GetString("WifiEmployeeNetworkNameValue") ?? string.Empty;
+        public string WifiEmployeeNetworkPasswordValue => _resourceManager.GetString("WifiEmployeeNetworkPasswordValue") ?? string.Empty;
 
 
         // ==================== Initialization ====================
@@ -137,6 +148,7 @@ namespace ITSupportToolGUI
             BackToInfoViewCommand = new RelayCommand(ShowInfoView);
             CopyAllInfoCommand = new RelayCommand(_ => CopyInfo());
             ShowPrinterViewCommand = new RelayCommand(ShowPrinterView);
+            ShowComputerInfoViewCommand = new RelayCommand(ShowComputerInfoView);
             SearchPrintersCommand = new RelayCommand(async _ => await SearchPrintersAsync(), _ => !_isSearchingPrinters);
             AddSelectedPrintersCommand = new RelayCommand(async _ => await AddSelectedPrintersAsync(), _ => AvailablePrinters.Any(p => p.IsSelected));
             OpenRemoteHelpCommand = new RelayCommand(_ => OpenRemoteHelp());
@@ -164,22 +176,34 @@ namespace ITSupportToolGUI
         private void ShowScriptInstructionsView(object? parameter)
         {
             WindowWidth = 570; // Expand width
-            IsInfoViewVisible = false;
+            IsServiceDeskViewVisible = false;
+            IsComputerInfoViewVisible = false;
             IsPrinterViewVisible = false;
             IsInstructionsViewVisible = true;
         }
         private void ShowInfoView(object? parameter)
         {
             WindowWidth = 520; // Shrink width back to normal
+            IsServiceDeskViewVisible = true;
+            IsComputerInfoViewVisible = false;
             IsInstructionsViewVisible = false;
             IsPrinterViewVisible = false;
-            IsInfoViewVisible = true;
+        }
+
+        private void ShowComputerInfoView(object? parameter)
+        {
+            WindowWidth = 520; // Shrink width back to normal
+            IsServiceDeskViewVisible = false;
+            IsInstructionsViewVisible = false;
+            IsPrinterViewVisible = false;
+            IsComputerInfoViewVisible = true;
         }
 
         private void ShowPrinterView(object? parameter)
         {
             WindowWidth = 800; // Expand width for printer view
-            IsInfoViewVisible = false;
+            IsServiceDeskViewVisible = false;
+            IsComputerInfoViewVisible = false;
             IsInstructionsViewVisible = false;
             IsPrinterViewVisible = true;
         }
@@ -245,15 +269,11 @@ namespace ITSupportToolGUI
         {
             try
             {
-                string url;
-                switch (GetCountry())
+                string? url = _resourceManager.GetString("ITMessagesURL");
+                if (!string.IsNullOrEmpty(url))
                 {
-                    case "SE": url = "https://starkworkspace.sharepoint.com/sites/toolboxbeijer/_layouts/15/news.aspx?title=IT-Info%20%26%20Driftst%C3%B6rningar&newsSource=3&instanceId=8c765d0e-5f7c-4792-b5d3-ab91d5410598&webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&serverRelativeUrl=%2Fsites%2Ftoolboxbeijer%2FSitePages%2FHome.aspx&pagesListId=2b8827a3-0d95-495e-8d57-ae0cb9587734"; break;
-                    case "NO": url = "https://starkworkspace.sharepoint.com/sites/toolboxneumann/_layouts/15/news.aspx?title=IT%20driftsmeldinger&newsSource=3&instanceId=474050fe-7cf7-4d0b-b4f3-6eafe78aae78&webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&serverRelativeUrl=%2Fsites%2Ftoolboxneumann%2FSitePages%2FHome.aspx&pagesListId=847af74d-84e4-4a37-89ce-cbb1a044f0fc"; break;
-                    case "GROUP": url = "https://starkworkspace.sharepoint.com/sites/toolboxstarkgroup/_layouts/15/news.aspx?title=Latest%20news&newsSource=3&instanceId=3c3acc5f-432c-4b7b-a6b3-0426a6dad5cf&webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&serverRelativeUrl=%2Fsites%2Ftoolboxstarkgroup%2FSitePages%2FHome.aspx&pagesListId=b5016441-c0e2-46b8-8e37-38673915ad42&audienceTargetingEnabled=true"; break;
-                    default: url = "https://starkworkspace.sharepoint.com/sites/toolboxstarkdk/_layouts/15/news.aspx?title=IT%20Servicemeddelelser&newsSource=3&instanceId=f0432ad5-c752-4696-bb24-3006c93c8e22&webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&serverRelativeUrl=%2Fsites%2Ftoolboxstarkdk%2FSitePages%2FHome.aspx&pagesListId=1485bbde-3d57-4a10-8d68-ff781af0d722"; break;
+                    Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
                 }
-                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             }
             catch (Exception ex) { MessageBox.Show($"Error opening IT messages URL: {ex.Message}"); }
         }
@@ -263,21 +283,9 @@ namespace ITSupportToolGUI
             try
             {
                 var infoText = new StringBuilder();
-                infoText.AppendLine($"{ComputerNameLabel} {ComputerName}");
-                infoText.AppendLine($"{UserNameLabel} {UserName}");
-                infoText.AppendLine($"{OsVersionLabel} {OsVersion}");
-                infoText.AppendLine($"{IpAddressLabel} {IpAddress}");
-                infoText.AppendLine($"{SsidLabel} {Ssid}");
-                infoText.AppendLine($"{LastRestartLabel} {LastRestart}");
-
-                if (IsVpnConnected)
+                foreach (var item in ComputerInfoItems)
                 {
-                    infoText.AppendLine($"{VpnStatusLabel} {VpnStatus}");
-                    infoText.AppendLine($"{VpnIpAddressLabel} {VpnIpAddress}");
-                }
-                else
-                {
-                    infoText.AppendLine($"{VpnStatusLabel} {VpnStatus}");
+                    infoText.AppendLine($"{item.Label} {item.Value}");
                 }
                 Clipboard.SetText(infoText.ToString());
             }
@@ -551,24 +559,31 @@ namespace ITSupportToolGUI
 
                 await Task.WhenAll(computerNameTask, usernameTask, ssidTask, ipAddressTask, osVersionTask, lastRestartTask);
 
-                ComputerName = computerNameTask.Result;
-                UserName = usernameTask.Result;
-                Ssid = ssidTask.Result;
-                IpAddress = ipAddressTask.Result;
-                OsVersion = osVersionTask.Result;
-                LastRestart = lastRestartTask.Result;
+                ComputerInfoItems.Clear();
+                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("ComputerNameLabel") ?? "Computer Name", Value = computerNameTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("UsernameLabel") ?? "Username", Value = usernameTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("OSVersionLabel") ?? "OS Version", Value = osVersionTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("IPAddressLabel") ?? "IP Address", Value = ipAddressTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("SSIDLabel") ?? "Network", Value = ssidTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("LastRestartLabel") ?? "Last Restart", Value = lastRestartTask.Result });
 
                 // Also update VPN status after initial info is fetched
                 UpdateVpnStatus();
-
-                OnPropertyChanged(string.Empty);
             }
             catch (Exception ex) { MessageBox.Show($"An error occurred while fetching system information: {ex.Message}"); }
         }
 
         private async Task UpdateSSID()
         {
-            try { Ssid = await GetSSIDAsync(); OnPropertyChanged(nameof(Ssid)); }
+            try
+            {
+                var ssid = await GetSSIDAsync();
+                var ssidItem = ComputerInfoItems.FirstOrDefault(i => i.Label == (_resourceManager.GetString("SSIDLabel") ?? "Network"));
+                if (ssidItem != null)
+                {
+                    ssidItem.Value = ssid;
+                }
+            }
             catch (Exception ex) { MessageBox.Show($"An error occurred while updating SSID: {ex.Message}"); }
         }
 
@@ -663,15 +678,26 @@ namespace ITSupportToolGUI
         private void UpdateVpnStatus()
         {
             IsVpnConnected = IsFortiClientConnected();
+            OnPropertyChanged(nameof(IsVpnConnected));
+
+            var vpnStatusLabel = _resourceManager.GetString("VPNStatusLabel") ?? "VPN Status";
+            var vpnIpAddressLabel = _resourceManager.GetString("VPNIPAddressLabel") ?? "VPN IP Address";
+
+            // Remove existing VPN info
+            var vpnItems = ComputerInfoItems.Where(i => i.Label == vpnStatusLabel || i.Label == vpnIpAddressLabel).ToList();
+            foreach (var item in vpnItems)
+            {
+                ComputerInfoItems.Remove(item);
+            }
+
             if (IsVpnConnected)
             {
-                VpnStatus = _resourceManager.GetString("FortiClientConnected");
-                VpnIpAddress = GetVpnIpAddress();
+                ComputerInfoItems.Add(new InfoItem { Label = vpnStatusLabel, Value = _resourceManager.GetString("FortiClientConnected") ?? "Connected" });
+                ComputerInfoItems.Add(new InfoItem { Label = vpnIpAddressLabel, Value = GetVpnIpAddress() ?? "N/A" });
             }
             else
             {
-                VpnStatus = _resourceManager.GetString("FortiClientDisconnected");
-                VpnIpAddress = string.Empty;
+                ComputerInfoItems.Add(new InfoItem { Label = vpnStatusLabel, Value = _resourceManager.GetString("FortiClientDisconnected") ?? "Disconnected" });
             }
         }
 

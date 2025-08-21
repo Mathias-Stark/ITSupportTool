@@ -502,6 +502,87 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IT Support Information.
+        /// </summary>
+        internal static string ServiceDeskCardTitle {
+            get {
+                return ResourceManager.GetString("ServiceDeskCardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email: itsupport@stark.dk.
+        /// </summary>
+        internal static string ServiceDeskEmail {
+            get {
+                return ResourceManager.GetString("ServiceDeskEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monday – Friday: 06:00–17:00.
+        /// </summary>
+        internal static string ServiceDeskHours {
+            get {
+                return ResourceManager.GetString("ServiceDeskHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IT Support.
+        /// </summary>
+        internal static string ServiceDeskLabel {
+            get {
+                return ResourceManager.GetString("ServiceDeskLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone: 8252 6900.
+        /// </summary>
+        internal static string ServiceDeskPhone {
+            get {
+                return ResourceManager.GetString("ServiceDeskPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IT Support information.
+        /// </summary>
+        internal static string ServiceDeskTitle {
+            get {
+                return ResourceManager.GetString("ServiceDeskTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show the IT Support contact information..
+        /// </summary>
+        internal static string ServiceDeskToolTip {
+            get {
+                return ResourceManager.GetString("ServiceDeskToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Computer Information.
+        /// </summary>
+        internal static string ShowComputerInfoLabel {
+            get {
+                return ResourceManager.GetString("ShowComputerInfoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show detailed information about your computer..
+        /// </summary>
+        internal static string ShowComputerInfoToolTip {
+            get {
+                return ResourceManager.GetString("ShowComputerInfoToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Location ID:.
         /// </summary>
         internal static string SiteIdLabel {
@@ -561,6 +642,51 @@ namespace ITSupportToolGUI.Resources {
         internal static string VPNStatusLabel {
             get {
                 return ResourceManager.GetString("VPNStatusLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wifi for Mobile Phones.
+        /// </summary>
+        internal static string WifiCardTitle {
+            get {
+                return ResourceManager.GetString("WifiCardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to StarkIOT.
+        /// </summary>
+        internal static string WifiEmployeeNetworkNameValue {
+            get {
+                return ResourceManager.GetString("WifiEmployeeNetworkNameValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Int3rnet4iPads.
+        /// </summary>
+        internal static string WifiEmployeeNetworkPasswordValue {
+            get {
+                return ResourceManager.GetString("WifiEmployeeNetworkPasswordValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        internal static string WifiNetworkNameLabel {
+            get {
+                return ResourceManager.GetString("WifiNetworkNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code:.
+        /// </summary>
+        internal static string WifiNetworkPasswordLabel {
+            get {
+                return ResourceManager.GetString("WifiNetworkPasswordLabel", resourceCulture);
             }
         }
     }
