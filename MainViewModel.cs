@@ -291,7 +291,7 @@ namespace ITSupportToolGUI
                 switch (GetCountry())
                 {
                     case "SE": url = "https://starkworkspace.sharepoint.com/sites/toolboxbeijer/_layouts/15/news.aspx?title=IT-Info%20%26%20Driftst%C3%B6rningar&newsSource=3&instanceId=8c765d0e-5f7c-4792-b5d3-ab91d5410598&webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&serverRelativeUrl=%2Fsites%2Ftoolboxbeijer%2FSitePages%2FHome.aspx&pagesListId=2b8827a3-0d95-495e-8d57-ae0cb9587734"; break;
-                    case "NO": url = "https://starkworkspace.sharepoint.com/sites/toolboxneumann/_layouts/15/news.aspx?title=IT%20driftsmeldinger&newsSource=3&instanceId=474050fe-7cf7-4d0b-b4f3-6eafe78aae78&webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&serverRelativeUrl=%2Fsites%2Ftoolboxneumann%2FSitePages%2FHome.aspx&pagesListId=847af74d-84e4-4a37-89ce-cbb1a044f0fc"; break;
+                    case "NO": url = "https://starkworkspace.sharepoint.com/sites/toolboxneumann/_layouts/15/news.aspx?title=Nytt%20fra%20IT&newsSource=3&instanceId=31ec67c4-e38b-479d-b743-5eead3a06796&webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&serverRelativeUrl=%2Fsites%2Ftoolboxneumann%2FSitePages%2FHome.aspx&pagesListId=847af74d-84e4-4a37-89ce-cbb1a044f0fc"; break;
                     case "GROUP": url = "https://starkworkspace.sharepoint.com/sites/toolboxstarkgroup/_layouts/15/news.aspx?title=Latest%20news&newsSource=3&instanceId=3c3acc5f-432c-4b7b-a6b3-0426a6dad5cf&webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&serverRelativeUrl=%2Fsites%2Ftoolboxstarkgroup%2FSitePages%2FHome.aspx&pagesListId=b5016441-c0e2-46b8-8e37-38673915ad42&audienceTargetingEnabled=true"; break;
                     default: url = "https://starkworkspace.sharepoint.com/sites/toolboxstarkdk/_layouts/15/news.aspx?title=IT%20Servicemeddelelser&newsSource=3&instanceId=f0432ad5-c752-4696-bb24-3006c93c8e22&webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&serverRelativeUrl=%2Fsites%2Ftoolboxstarkdk%2FSitePages%2FHome.aspx&pagesListId=1485bbde-3d57-4a10-8d68-ff781af0d722"; break;
                 }
@@ -566,7 +566,7 @@ namespace ITSupportToolGUI
             // For testing purposes, you can temporarily override the country code here.
             // For example: return "SE"; or return "NO";
             // Set to an empty string to use the actual system region.
-            string _testCountryCode = "GROUP";
+            string _testCountryCode = "";
 
             if (!string.IsNullOrEmpty(_testCountryCode))
             {
