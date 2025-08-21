@@ -187,7 +187,6 @@ namespace ITSupportToolGUI
             WindowWidth = 520; // Shrink width back to normal
             IsServiceDeskViewVisible = true;
             IsComputerInfoViewVisible = false;
-            IsInstructionsViewVisible = false;
             IsPrinterViewVisible = false;
         }
 
@@ -195,7 +194,6 @@ namespace ITSupportToolGUI
         {
             WindowWidth = 520; // Shrink width back to normal
             IsServiceDeskViewVisible = false;
-            IsInstructionsViewVisible = false;
             IsPrinterViewVisible = false;
             IsComputerInfoViewVisible = true;
         }
