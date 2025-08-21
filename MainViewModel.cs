@@ -80,7 +80,8 @@ namespace ITSupportToolGUI
         public ObservableCollection<Printer> AvailablePrinters { get; } = new ObservableCollection<Printer>();
         public string SiteId { get => _siteId; set { _siteId = value; OnPropertyChanged(); } }
         public string PrinterStatusMessage { get => _printerStatusMessage; set { _printerStatusMessage = value; OnPropertyChanged(); } }
-        public string PrinterNotice => _resourceManager.GetString("PrinterNotice") ?? "Enter Site ID to find printers.";
+        public string PrinterNotice => _resourceManager.GetString("PrinterNotice") ?? string.Empty;
+
 
 
         // ==================== UI Properties (from resources) ====================
@@ -128,6 +129,9 @@ namespace ITSupportToolGUI
         public string SiteIdLabel => _resourceManager.GetString("SiteIdLabel") ?? string.Empty;
         public string SearchButtonText => _resourceManager.GetString("SearchButtonText") ?? string.Empty;
         public string AddSelectedButtonText => _resourceManager.GetString("AddSelectedButtonText") ?? string.Empty;
+        public string PrinterSelectHeader => _resourceManager.GetString("PrinterSelectHeader") ?? string.Empty;
+        public string PrinterNameHeader => _resourceManager.GetString("PrinterNameHeader") ?? string.Empty;
+
 
         // Service Desk View (Consolidated)
         public string ServiceDeskTitle => _resourceManager.GetString("ServiceDeskTitle") ?? string.Empty;
@@ -562,7 +566,7 @@ namespace ITSupportToolGUI
             // For testing purposes, you can temporarily override the country code here.
             // For example: return "SE"; or return "NO";
             // Set to an empty string to use the actual system region.
-            string _testCountryCode = "SE";
+            string _testCountryCode = "";
 
             if (!string.IsNullOrEmpty(_testCountryCode))
             {

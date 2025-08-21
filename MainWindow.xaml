@@ -127,7 +127,7 @@
                 </Setter>
             </Style>
 
-            <!-- New Styles for Service Desk View -->
+            <!-- Styles for Service Desk View -->
             <Style x:Key="CardBorderStyle" TargetType="Border">
                 <Setter Property="Background" Value="White"/>
                 <Setter Property="BorderBrush" Value="#E0E0E0"/>
@@ -361,14 +361,14 @@
                     <ListView ItemsSource="{Binding AvailablePrinters}" Margin="15,5" MaxHeight="250">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Vælg" Width="50">
+                                <GridViewColumn Header="{Binding PrinterSelectHeader}" Width="50">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Printernavn" DisplayMemberBinding="{Binding Name}" Width="450"/>
+                                <GridViewColumn Header="{Binding PrinterNameHeader}" DisplayMemberBinding="{Binding Name}" Width="450"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -380,13 +380,13 @@
                 </StackPanel>
 
                 <!-- Secret Easter Egg Button -->
-                <Button x:Name="secretButton" 
-                        Width="20" Height="20" 
-                        Opacity="0" 
-                        Click="SecretButton_Click" 
-                        HorizontalAlignment="Right" 
-                        VerticalAlignment="Bottom" 
-                        Margin="0,0,0,-5" 
+                <Button x:Name="secretButton"
+                        Width="20" Height="20"
+                        Opacity="0"
+                        Click="SecretButton_Click"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,-5"
                         Cursor="Hand"
                         Visibility="{Binding IsComputerInfoViewVisible, Converter={StaticResource BoolToVis}}"/>
             </Grid>

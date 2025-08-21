@@ -333,4 +333,10 @@
   <data name="PrinterNotice" xml:space="preserve">
     <value>OPS: Kan kun tilføje Ricoh printere.</value>
   </data>
+  <data name="PrinterSelectHeader" xml:space="preserve">
+    <value>Vælg</value>
+  </data>
+  <data name="PrinterNameHeader" xml:space="preserve">
+    <value>Printernavn</value>
+  </data>
 </root>

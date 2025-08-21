@@ -385,6 +385,15 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Printer Name.
+        /// </summary>
+        internal static string PrinterNameHeader {
+            get {
+                return ResourceManager.GetString("PrinterNameHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NOTE: Can only add Ricoh printers..
         /// </summary>
         internal static string PrinterNotice {
@@ -426,6 +435,15 @@ namespace ITSupportToolGUI.Resources {
         internal static string PrinterReportTitle {
             get {
                 return ResourceManager.GetString("PrinterReportTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        internal static string PrinterSelectHeader {
+            get {
+                return ResourceManager.GetString("PrinterSelectHeader", resourceCulture);
             }
         }
         

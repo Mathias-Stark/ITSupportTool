@@ -333,4 +333,10 @@
   <data name="PrinterNotice" xml:space="preserve">
     <value>NOTE: Can only add Ricoh printers.</value>
   </data>
+  <data name="PrinterSelectHeader" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="PrinterNameHeader" xml:space="preserve">
+    <value>Printer Name</value>
+  </data>
 </root>

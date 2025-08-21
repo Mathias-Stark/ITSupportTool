@@ -333,4 +333,10 @@
   <data name="PrinterNotice" xml:space="preserve">
     <value>Ange butiksnummer för att hitta skrivare.</value>
   </data>
+  <data name="PrinterSelectHeader" xml:space="preserve">
+    <value>Välj</value>
+  </data>
+  <data name="PrinterNameHeader" xml:space="preserve">
+    <value>Skrivarnamn</value>
+  </data>
 </root>
