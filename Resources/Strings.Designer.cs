@@ -502,56 +502,20 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email: servicedesk.dk@example.com.
+        ///   Looks up a localized string similar to IT Support.
         /// </summary>
-        internal static string ServiceDeskDenmarkEmail {
+        internal static string ServiceDeskCardTitle {
             get {
-                return ResourceManager.GetString("ServiceDeskDenmarkEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phone: 87654321.
-        /// </summary>
-        internal static string ServiceDeskDenmarkPhone {
-            get {
-                return ResourceManager.GetString("ServiceDeskDenmarkPhone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Denmark.
-        /// </summary>
-        internal static string ServiceDeskDenmarkTitle {
-            get {
-                return ResourceManager.GetString("ServiceDeskDenmarkTitle", resourceCulture);
+                return ResourceManager.GetString("ServiceDeskCardTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Email: itsupport@stark.dk.
         /// </summary>
-        internal static string ServiceDeskDKEmail {
+        internal static string ServiceDeskEmail {
             get {
-                return ResourceManager.GetString("ServiceDeskDKEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mandag-fredag Kl. 06.00-17.00.
-        /// </summary>
-        internal static string ServiceDeskDKHours {
-            get {
-                return ResourceManager.GetString("ServiceDeskDKHours", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Telefon: 8252 6900.
-        /// </summary>
-        internal static string ServiceDeskDKPhone {
-            get {
-                return ResourceManager.GetString("ServiceDeskDKPhone", resourceCulture);
+                return ResourceManager.GetString("ServiceDeskEmail", resourceCulture);
             }
         }
         
@@ -565,61 +529,16 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email: servicedesk.no@example.com.
+        ///   Looks up a localized string similar to Phone: 8252 6900.
         /// </summary>
-        internal static string ServiceDeskNorwayEmail {
+        internal static string ServiceDeskPhone {
             get {
-                return ResourceManager.GetString("ServiceDeskNorwayEmail", resourceCulture);
+                return ResourceManager.GetString("ServiceDeskPhone", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone: 23456789.
-        /// </summary>
-        internal static string ServiceDeskNorwayPhone {
-            get {
-                return ResourceManager.GetString("ServiceDeskNorwayPhone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Norway.
-        /// </summary>
-        internal static string ServiceDeskNorwayTitle {
-            get {
-                return ResourceManager.GetString("ServiceDeskNorwayTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email: servicedesk.se@example.com.
-        /// </summary>
-        internal static string ServiceDeskSwedenEmail {
-            get {
-                return ResourceManager.GetString("ServiceDeskSwedenEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phone: 34567890.
-        /// </summary>
-        internal static string ServiceDeskSwedenPhone {
-            get {
-                return ResourceManager.GetString("ServiceDeskSwedenPhone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sweden.
-        /// </summary>
-        internal static string ServiceDeskSwedenTitle {
-            get {
-                return ResourceManager.GetString("ServiceDeskSwedenTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to IT Service Desk.
+        ///   Looks up a localized string similar to IT Support.
         /// </summary>
         internal static string ServiceDeskTitle {
             get {
@@ -646,20 +565,20 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IT ServiceDesk.
-        /// </summary>
-        internal static string ShowServiceDeskLabel {
-            get {
-                return ResourceManager.GetString("ShowServiceDeskLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show the IT ServiceDesk contact information..
         /// </summary>
         internal static string ShowServiceDeskToolTip {
             get {
                 return ResourceManager.GetString("ShowServiceDeskToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show information about IT Support.
+        /// </summary>
+        internal static string ShowSupportLabel {
+            get {
+                return ResourceManager.GetString("ShowSupportLabel", resourceCulture);
             }
         }
         
@@ -727,6 +646,15 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wifi for Mobile Phones.
+        /// </summary>
+        internal static string WifiCardTitle {
+            get {
+                return ResourceManager.GetString("WifiCardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to StarkIOT.
         /// </summary>
         internal static string WifiEmployeeNetworkNameValue {
@@ -745,43 +673,7 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trådløst netværk i STARK til medarbejder mobiler.
-        /// </summary>
-        internal static string WifiEmployeeNetworkTitle {
-            get {
-                return ResourceManager.GetString("WifiEmployeeNetworkTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to StarkGroupGuest.
-        /// </summary>
-        internal static string WifiGuestNetworkNameValue {
-            get {
-                return ResourceManager.GetString("WifiGuestNetworkNameValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Anton2004.
-        /// </summary>
-        internal static string WifiGuestNetworkPasswordValue {
-            get {
-                return ResourceManager.GetString("WifiGuestNetworkPasswordValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Trådløst netværk i STARK for gæster.
-        /// </summary>
-        internal static string WifiGuestNetworkTitle {
-            get {
-                return ResourceManager.GetString("WifiGuestNetworkTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Navn:.
+        ///   Looks up a localized string similar to Name:.
         /// </summary>
         internal static string WifiNetworkNameLabel {
             get {
@@ -790,7 +682,7 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kode:.
+        ///   Looks up a localized string similar to Code:.
         /// </summary>
         internal static string WifiNetworkPasswordLabel {
             get {

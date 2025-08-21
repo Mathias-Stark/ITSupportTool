@@ -144,14 +144,10 @@ namespace ITSupportToolGUI
         public string AddSelectedButtonText => _resourceManager.GetString("AddSelectedButtonText") ?? string.Empty;
 
         // Service Desk View
-        public string SupportTitle => _resourceManager.GetString("SupportTitle") ?? string.Empty;
+        public string ServiceDeskTitle => _resourceManager.GetString("SupportTitle") ?? string.Empty;
         public string ServiceDeskHours => _resourceManager.GetString("ServiceDeskHours") ?? string.Empty;
-        public string ServiceDeskDKPhone => _resourceManager.GetString("ServiceDeskDKPhone") ?? string.Empty;
-        public string ServiceDeskDKEmail => _resourceManager.GetString("ServiceDeskDKEmail") ?? string.Empty;
-        public string ServiceDeskNOPhone => _resourceManager.GetString("ServiceDeskNOPhone") ?? string.Empty;
-        public string ServiceDeskNOEmail => _resourceManager.GetString("ServiceDeskNOEmail") ?? string.Empty;
-        public string ServiceDeskSEPhone => _resourceManager.GetString("ServiceDeskSEPhone") ?? string.Empty;
-        public string ServiceDeskSEEmail => _resourceManager.GetString("ServiceDeskSEEmail") ?? string.Empty;
+        public string ServiceDeskPhone => _resourceManager.GetString("ServiceDeskDKPhone") ?? string.Empty;
+        public string ServiceDeskEmail => _resourceManager.GetString("ServiceDeskDKEmail") ?? string.Empty;
 
         // Wi-Fi Info Properties
         public string WifiCardTitle => _resourceManager.GetString("WifiCardTitle") ?? string.Empty;

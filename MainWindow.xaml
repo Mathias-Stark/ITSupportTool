@@ -230,10 +230,10 @@
                                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServiceDeskHours, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
 
                                 <TextBlock Grid.Row="1" Grid.Column="0" Text="📞" Style="{StaticResource IconTextStyle}" Margin="0,5,10,5"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskDKPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
 
                                 <TextBlock Grid.Row="2" Grid.Column="0" Text="📧" Style="{StaticResource IconTextStyle}"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskDKEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
                             </Grid>
                         </StackPanel>
                     </Border>
@@ -256,10 +256,10 @@
                                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServiceDeskHours, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
 
                                 <TextBlock Grid.Row="1" Grid.Column="0" Text="📞" Style="{StaticResource IconTextStyle}" Margin="0,5,10,5"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskNOPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
 
                                 <TextBlock Grid.Row="2" Grid.Column="0" Text="📧" Style="{StaticResource IconTextStyle}"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskNOEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
                             </Grid>
                         </StackPanel>
                     </Border>
@@ -282,10 +282,10 @@
                                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServiceDeskHours, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
 
                                 <TextBlock Grid.Row="1" Grid.Column="0" Text="📞" Style="{StaticResource IconTextStyle}" Margin="0,5,10,5"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskSEPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
 
                                 <TextBlock Grid.Row="2" Grid.Column="0" Text="📧" Style="{StaticResource IconTextStyle}"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskSEEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
                             </Grid>
                         </StackPanel>
                     </Border>

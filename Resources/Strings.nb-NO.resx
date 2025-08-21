@@ -286,28 +286,10 @@
     <value>Installasjonsprosessen er fullført.</value>
   </data>
   <data name="ServiceDeskTitle" xml:space="preserve">
-    <value>IT Service Desk</value>
+    <value>IT Support</value>
   </data>
   <data name="ServiceDeskHours" xml:space="preserve">
     <value>Åpningstider: 08:00 - 16:00</value>
-  </data>
-  <data name="ServiceDeskDenmarkPhone" xml:space="preserve">
-    <value>Telefon: 87654321</value>
-  </data>
-  <data name="ServiceDeskDenmarkEmail" xml:space="preserve">
-    <value>Email: servicedesk.dk@example.com</value>
-  </data>
-  <data name="ServiceDeskNorwayPhone" xml:space="preserve">
-    <value>Telefon: 23456789</value>
-  </data>
-  <data name="ServiceDeskNorwayEmail" xml:space="preserve">
-    <value>E-post: servicedesk.no@example.com</value>
-  </data>
-  <data name="ServiceDeskSwedenPhone" xml:space="preserve">
-    <value>Telefon: 34567890</value>
-  </data>
-  <data name="ServiceDeskSwedenEmail" xml:space="preserve">
-    <value>E-post: servicedesk.se@example.com</value>
   </data>
   <data name="ShowComputerInfoLabel" xml:space="preserve">
     <value>Datamaskin-informasjon</value>
@@ -315,19 +297,34 @@
   <data name="ShowComputerInfoToolTip" xml:space="preserve">
     <value>Vis detaljert informasjon om datamaskinen din.</value>
   </data>
-  <data name="ServiceDeskDenmarkTitle" xml:space="preserve">
-    <value>Danmark</value>
+  <data name="ServiceDeskCardTitle" xml:space="preserve">
+    <value>IT Support</value>
   </data>
-  <data name="ServiceDeskNorwayTitle" xml:space="preserve">
-    <value>Norge</value>
-  </data>
-  <data name="ServiceDeskSwedenTitle" xml:space="preserve">
-    <value>Sverige</value>
-  </data>
-  <data name="ShowServiceDeskLabel" xml:space="preserve">
-    <value>IT ServiceDesk</value>
+  <data name="ShowSupportLabel" xml:space="preserve">
+    <value>Vis informasjon om IT Support</value>
   </data>
   <data name="ShowServiceDeskToolTip" xml:space="preserve">
     <value>Vis IT ServiceDesk kontaktinformasjon.</value>
+  </data>
+  <data name="ServiceDeskPhone" xml:space="preserve">
+    <value>Telefon: 8252 6900</value>
+  </data>
+  <data name="ServiceDeskEmail" xml:space="preserve">
+    <value>E-post: itsupport@stark.dk</value>
+  </data>
+  <data name="WifiCardTitle" xml:space="preserve">
+    <value>Wifi for STARK-mobiltelefoner</value>
+  </data>
+  <data name="WifiNetworkNameLabel" xml:space="preserve">
+    <value>Navn:</value>
+  </data>
+  <data name="WifiNetworkPasswordLabel" xml:space="preserve">
+    <value>Kode:</value>
+  </data>
+  <data name="WifiEmployeeNetworkNameValue" xml:space="preserve">
+    <value>StarkIOT</value>
+  </data>
+  <data name="WifiEmployeeNetworkPasswordValue" xml:space="preserve">
+    <value>Int3rnet4iPads</value>
   </data>
 </root>
