@@ -327,4 +327,7 @@
   <data name="WifiEmployeeNetworkPasswordValue" xml:space="preserve">
     <value>Int3rnet4iPads</value>
   </data>
+  <data name="ITMessagesURL" xml:space="preserve">
+    <value>https://starkworkspace.sharepoint.com/sites/toolboxstarkdk/_layouts/15/news.aspx?title=IT%20Servicemeddelelser&amp;newsSource=3&amp;instanceId=f0432ad5-c752-4696-bb24-3006c93c8e22&amp;webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&amp;serverRelativeUrl=%2Fsites%2Ftoolboxstarkdk%2FSitePages%2FHome.aspx&amp;pagesListId=1485bbde-3d57-4a10-8d68-ff781af0d722</value>
+  </data>
 </root>

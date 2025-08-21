@@ -278,70 +278,20 @@
                         <Label Content="{Binding ComputerInformationTitle}" Margin="10,10,0,7" FontWeight="Bold" FontSize="16"/>
                     </Button>
 
-                    <Grid Margin="10,5,10,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{Binding ComputerNameLabel}" VerticalAlignment="Center"/>
-                        <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding ComputerName}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding ComputerName}"/>
-                    </Grid>
-                    <Grid Margin="10,5,10,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{Binding UserNameLabel}" VerticalAlignment="Center"/>
-                        <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding UserName}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding UserName}"/>
-                    </Grid>
-                    <Grid Margin="10,5,10,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{Binding OsVersionLabel}" VerticalAlignment="Center"/>
-                        <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding OsVersion}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding OsVersion}"/>
-                    </Grid>
-                    <Grid Margin="10,5,10,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{Binding IpAddressLabel}" VerticalAlignment="Center"/>
-                        <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding IpAddress}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding IpAddress}"/>
-                    </Grid>
-                    <Grid Margin="10,5,10,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{Binding SsidLabel}" VerticalAlignment="Center"/>
-                        <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding Ssid}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding Ssid}"/>
-                    </Grid>
-                    <Grid Margin="10,5,10,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{Binding LastRestartLabel}" VerticalAlignment="Center"/>
-                        <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding LastRestart}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding LastRestart}"/>
-                    </Grid>
-                    <Grid Margin="10,5,10,5" Visibility="{Binding IsVpnConnected, Converter={StaticResource BoolToVis}}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{Binding VpnStatusLabel}" VerticalAlignment="Center"/>
-                        <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding VpnStatus}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding VpnStatus}"/>
-                    </Grid>
-                    <Grid Margin="10,5,10,5" Visibility="{Binding IsVpnConnected, Converter={StaticResource BoolToVis}}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{Binding VpnIpAddressLabel}" VerticalAlignment="Center"/>
-                        <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding VpnIpAddress}" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding VpnIpAddress}"/>
-                    </Grid>
+                    <ItemsControl ItemsSource="{Binding ComputerInfoItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="10,5,10,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{Binding Label}" VerticalAlignment="Center"/>
+                                    <Button Style="{StaticResource CopyableValueStyle}" Grid.Column="1" Content="{Binding Value}" Command="{Binding DataContext.CopyToClipboardCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding Value}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
 
                 <!-- View 2: Script Instructions Panel -->
