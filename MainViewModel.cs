@@ -528,7 +528,7 @@ namespace ITSupportToolGUI
             // For testing purposes, you can temporarily override the country code here.
             // For example: return "SE"; or return "NO";
             // Set to an empty string to use the actual system region.
-            string _testCountryCode = "GROUP";
+            string _testCountryCode = "";
 
             if (!string.IsNullOrEmpty(_testCountryCode))
             {
