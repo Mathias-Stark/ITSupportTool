@@ -80,25 +80,12 @@ namespace ITSupportToolGUI
         public ObservableCollection<Printer> AvailablePrinters { get; } = new ObservableCollection<Printer>();
         public string SiteId { get => _siteId; set { _siteId = value; OnPropertyChanged(); } }
         public string PrinterStatusMessage { get => _printerStatusMessage; set { _printerStatusMessage = value; OnPropertyChanged(); } }
-        public string PrinterNotice
-        {
-            get
-            {
-                string country = GetCountry();
-                if (country == "DK" || country == "GROUP")
-                {
-                    // TODO: A new resource string "PrinterNoticeRicoh" is needed.
-                    // Default (en-US for GROUP): "NOTE: Can only add Ricoh printers."
-                    // da-DK: "OPS: Kan kun tilføje Ricoh printere."
-                    return _resourceManager.GetString("PrinterNoticeRicoh") ?? "NOTE: Can only add Ricoh printers.";
-                }
-                else
-                {
-                    // TODO: The resource string "PrinterStatusEnterSiteId" should be made generic (e.g., "Enter Site ID to find printers.").
-                    return _resourceManager.GetString("PrinterStatusEnterSiteId") ?? "Enter Site ID to find printers.";
-                }
-            }
-        }
+        // TODO: A new resource string "PrinterNotice" is needed with the following values:
+        // Default (en-US for GROUP): "NOTE: Can only add Ricoh printers."
+        // da-DK: "OPS: Kan kun tilføje Ricoh printere."
+        // sv-SE: "Enter Site ID to find printers."
+        // The fallback value is a generic message.
+        public string PrinterNotice => _resourceManager.GetString("PrinterNotice") ?? "Enter Site ID to find printers.";
 
 
         // ==================== UI Properties (from resources) ====================
