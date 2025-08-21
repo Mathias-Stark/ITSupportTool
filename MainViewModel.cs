@@ -122,7 +122,7 @@ namespace ITSupportToolGUI
         public string ComputerInformationTitle => _resourceManager.GetString("ComputerInformationTitle") ?? string.Empty;
         public string AddPrinterLabel => _resourceManager.GetString("AddPrinterLabel") ?? string.Empty;
         public string ShowComputerInfoLabel => _resourceManager.GetString("ShowComputerInfoLabel") ?? string.Empty;
-        public string ShowSupportLabel => _resourceManager.GetString("ShowSupportLabel") ?? string.Empty;
+        public string ServiceDeskLabel => _resourceManager.GetString("ServiceDeskLabel") ?? string.Empty;
 
         // Wi-Fi Fix View
         public string InstructionsTitle => _resourceManager.GetString("InstructionsTitle") ?? string.Empty;
@@ -143,11 +143,11 @@ namespace ITSupportToolGUI
         public string SearchButtonText => _resourceManager.GetString("SearchButtonText") ?? string.Empty;
         public string AddSelectedButtonText => _resourceManager.GetString("AddSelectedButtonText") ?? string.Empty;
 
-        // Service Desk View
-        public string ServiceDeskTitle => _resourceManager.GetString("SupportTitle") ?? string.Empty;
+        // Service Desk View (Consolidated)
+        public string ServiceDeskTitle => _resourceManager.GetString("ServiceDeskTitle") ?? string.Empty;
         public string ServiceDeskHours => _resourceManager.GetString("ServiceDeskHours") ?? string.Empty;
-        public string ServiceDeskPhone => _resourceManager.GetString("ServiceDeskDKPhone") ?? string.Empty;
-        public string ServiceDeskEmail => _resourceManager.GetString("ServiceDeskDKEmail") ?? string.Empty;
+        public string ServiceDeskPhone => _resourceManager.GetString("ServiceDeskPhone") ?? string.Empty;
+        public string ServiceDeskEmail => _resourceManager.GetString("ServiceDeskEmail") ?? string.Empty;
 
         // Wi-Fi Info Properties
         public string WifiCardTitle => _resourceManager.GetString("WifiCardTitle") ?? string.Empty;
@@ -566,7 +566,7 @@ namespace ITSupportToolGUI
             // For testing purposes, you can temporarily override the country code here.
             // For example: return "SE"; or return "NO";
             // Set to an empty string to use the actual system region.
-            string _testCountryCode = "";
+            string _testCountryCode = "GROUP";
 
             if (!string.IsNullOrEmpty(_testCountryCode))
             {

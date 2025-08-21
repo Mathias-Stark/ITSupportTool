@@ -286,10 +286,10 @@
     <value>Installasjonsprosessen er fullført.</value>
   </data>
   <data name="ServiceDeskTitle" xml:space="preserve">
-    <value>IT Support</value>
+    <value>IT Support informasjon</value>
   </data>
   <data name="ServiceDeskHours" xml:space="preserve">
-    <value>Åpningstider: 08:00 - 16:00</value>
+    <value>Mandag – fredag: 06:00–17:00</value>
   </data>
   <data name="ShowComputerInfoLabel" xml:space="preserve">
     <value>Datamaskin-informasjon</value>
@@ -298,16 +298,16 @@
     <value>Vis detaljert informasjon om datamaskinen din.</value>
   </data>
   <data name="ServiceDeskCardTitle" xml:space="preserve">
+    <value>IT Support Informasjon</value>
+  </data>
+  <data name="ServiceDeskLabel" xml:space="preserve">
     <value>IT Support</value>
   </data>
-  <data name="ShowSupportLabel" xml:space="preserve">
-    <value>Vis informasjon om IT Support</value>
-  </data>
-  <data name="ShowServiceDeskToolTip" xml:space="preserve">
-    <value>Vis IT ServiceDesk kontaktinformasjon.</value>
+  <data name="ServiceDeskToolTip" xml:space="preserve">
+    <value>Vis IT Suppport kontaktinformasjon.</value>
   </data>
   <data name="ServiceDeskPhone" xml:space="preserve">
-    <value>Telefon: 8252 6900</value>
+    <value>Telefon: 477 64 114</value>
   </data>
   <data name="ServiceDeskEmail" xml:space="preserve">
     <value>E-post: itsupport@stark.dk</value>

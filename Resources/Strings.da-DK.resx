@@ -286,10 +286,10 @@
     <value>Installationen er færdig.</value>
   </data>
   <data name="ServiceDeskTitle" xml:space="preserve">
-    <value>IT Support</value>
+    <value>IT Support information</value>
   </data>
   <data name="ServiceDeskHours" xml:space="preserve">
-    <value>Åbningstider: 08:00 - 16:00</value>
+    <value>Mandag – fredag: 06:00–17:00</value>
   </data>
   <data name="ShowComputerInfoLabel" xml:space="preserve">
     <value>Computerinformation</value>
@@ -298,13 +298,13 @@
     <value>Vis detaljerede oplysninger om din computer.</value>
   </data>
   <data name="ServiceDeskCardTitle" xml:space="preserve">
+    <value>IT Support Information</value>
+  </data>
+  <data name="ServiceDeskLabel" xml:space="preserve">
     <value>IT Support</value>
   </data>
-  <data name="ShowSupportLabel" xml:space="preserve">
-    <value>Vis information om IT Support</value>
-  </data>
-  <data name="ShowServiceDeskToolTip" xml:space="preserve">
-    <value>Vis IT ServiceDesk kontaktoplysninger.</value>
+  <data name="ServiceDeskToolTip" xml:space="preserve">
+    <value>Vis IT Support kontaktoplysninger.</value>
   </data>
   <data name="ServiceDeskPhone" xml:space="preserve">
     <value>Telefon: 8252 6900</value>

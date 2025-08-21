@@ -502,7 +502,7 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IT Support.
+        ///   Looks up a localized string similar to IT Support Information.
         /// </summary>
         internal static string ServiceDeskCardTitle {
             get {
@@ -520,11 +520,20 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opening Hours: 08:00 - 16:00.
+        ///   Looks up a localized string similar to Monday – Friday: 06:00–17:00.
         /// </summary>
         internal static string ServiceDeskHours {
             get {
                 return ResourceManager.GetString("ServiceDeskHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IT Support.
+        /// </summary>
+        internal static string ServiceDeskLabel {
+            get {
+                return ResourceManager.GetString("ServiceDeskLabel", resourceCulture);
             }
         }
         
@@ -538,11 +547,20 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IT Support.
+        ///   Looks up a localized string similar to IT Support information.
         /// </summary>
         internal static string ServiceDeskTitle {
             get {
                 return ResourceManager.GetString("ServiceDeskTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show the IT Support contact information..
+        /// </summary>
+        internal static string ServiceDeskToolTip {
+            get {
+                return ResourceManager.GetString("ServiceDeskToolTip", resourceCulture);
             }
         }
         
@@ -561,24 +579,6 @@ namespace ITSupportToolGUI.Resources {
         internal static string ShowComputerInfoToolTip {
             get {
                 return ResourceManager.GetString("ShowComputerInfoToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show the IT ServiceDesk contact information..
-        /// </summary>
-        internal static string ShowServiceDeskToolTip {
-            get {
-                return ResourceManager.GetString("ShowServiceDeskToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show information about IT Support.
-        /// </summary>
-        internal static string ShowSupportLabel {
-            get {
-                return ResourceManager.GetString("ShowSupportLabel", resourceCulture);
             }
         }
         

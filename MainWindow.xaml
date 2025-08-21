@@ -194,7 +194,7 @@
                     <Image Source="Resources/STARK_Group_RGB_white.png" HorizontalAlignment="Left" Width="190" Height="Auto"/>
                 </Button>
                 <TextBlock Text="IT Support Tool" FontWeight="Bold" FontSize="16" Margin="10,5,5,10" Foreground="#fff"/>
-                <Button x:Name="btnShowServiceDesk" Content="{Binding ShowSupportLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding BackToInfoViewCommand}" ToolTip="{Binding ShowSupportToolTip}"/>
+                <Button x:Name="btnShowServiceDesk" Content="{Binding ServiceDeskLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding BackToInfoViewCommand}" ToolTip="{Binding ServiceDeskToolTip}"/>
                 <Button x:Name="btnOpenRemoteHelp" Content="{Binding OpenRemoteHelpLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding OpenRemoteHelpCommand}" ToolTip="{Binding OpenRemoteHelpTip}"/>
                 <Button x:Name="btnShowComputerInfo" Content="{Binding ShowComputerInfoLabel}" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowComputerInfoViewCommand}" ToolTip="{Binding ShowComputerInfoToolTip}"/>
                 <Button x:Name="btnOpenPasswordReset" Content="{Binding OpenPasswordResetLabel}" Style="{StaticResource MainButtonStyle}" Click="btnOpenPasswordReset_Click" ToolTip="{Binding OpenPasswordResetTip}"/>
@@ -210,11 +210,12 @@
             <Grid Margin="10">
                 <!-- Service Desk View -->
                 <StackPanel x:Name="ServiceDeskPanel" Visibility="{Binding IsServiceDeskViewVisible, Converter={StaticResource BoolToVis}}">
-                    <TextBlock Text="{Binding SupportTitle, Mode=OneWay}" Margin="10,10,0,7" FontWeight="Bold" FontSize="20" Foreground="#0d1d41"/>
+                    <TextBlock Text="{Binding ServiceDeskTitle, Mode=OneWay}" Margin="10,10,0,7" FontWeight="Bold" FontSize="20" Foreground="#0d1d41"/>
 
                     <!-- Denmark Service Desk -->
                     <Border Style="{StaticResource CardBorderStyle}" Visibility="{Binding IsDenmarkServiceDeskVisible, Converter={StaticResource BoolToVis}}">
                         <StackPanel>
+                            <TextBlock Text="{Binding ServiceDeskLabel, Mode=OneWay}" Style="{StaticResource CardTitleStyle}"/>
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -241,6 +242,7 @@
                     <!-- Norway Service Desk -->
                     <Border Style="{StaticResource CardBorderStyle}" Visibility="{Binding IsNorwayServiceDeskVisible, Converter={StaticResource BoolToVis}}">
                         <StackPanel>
+                            <TextBlock Text="{Binding ServiceDeskLabel, Mode=OneWay}" Style="{StaticResource CardTitleStyle}"/>
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -267,6 +269,7 @@
                     <!-- Sweden Service Desk -->
                     <Border Style="{StaticResource CardBorderStyle}" Visibility="{Binding IsSwedenServiceDeskVisible, Converter={StaticResource BoolToVis}}">
                         <StackPanel>
+                            <TextBlock Text="{Binding ServiceDeskLabel, Mode=OneWay}" Style="{StaticResource CardTitleStyle}"/>
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>

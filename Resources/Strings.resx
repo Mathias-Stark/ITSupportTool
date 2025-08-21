@@ -286,10 +286,10 @@
     <value>Installation process finished.</value>
   </data>
   <data name="ServiceDeskTitle" xml:space="preserve">
-    <value>IT Support</value>
+    <value>IT Support information</value>
   </data>
   <data name="ServiceDeskHours" xml:space="preserve">
-    <value>Opening Hours: 08:00 - 16:00</value>
+    <value>Monday – Friday: 06:00–17:00</value>
   </data>
   <data name="ShowComputerInfoLabel" xml:space="preserve">
     <value>Computer Information</value>
@@ -298,13 +298,13 @@
     <value>Show detailed information about your computer.</value>
   </data>
   <data name="ServiceDeskCardTitle" xml:space="preserve">
+    <value>IT Support Information</value>
+  </data>
+  <data name="ServiceDeskLabel" xml:space="preserve">
     <value>IT Support</value>
   </data>
-  <data name="ShowSupportLabel" xml:space="preserve">
-    <value>Show information about IT Support</value>
-  </data>
-  <data name="ShowServiceDeskToolTip" xml:space="preserve">
-    <value>Show the IT ServiceDesk contact information.</value>
+  <data name="ServiceDeskToolTip" xml:space="preserve">
+    <value>Show the IT Support contact information.</value>
   </data>
   <data name="ServiceDeskPhone" xml:space="preserve">
     <value>Phone: 8252 6900</value>
