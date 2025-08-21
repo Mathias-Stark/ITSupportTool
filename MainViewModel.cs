@@ -487,6 +487,17 @@ namespace ITSupportToolGUI
 
 
         // ==================== Language and Culture Logic ====================
+        private void UpdateComputerInfoLabels()
+        {
+            foreach (var item in ComputerInfoItems)
+            {
+                if (!string.IsNullOrEmpty(item.Id))
+                {
+                    item.Label = _resourceManager.GetString(item.Id) ?? item.Label;
+                }
+            }
+        }
+
         public Task SetLanguage(string culture)
         {
             // Set the culture first
@@ -494,6 +505,7 @@ namespace ITSupportToolGUI
 
             // Update all state that depends on the new culture
             UpdateVpnStatus();
+            UpdateComputerInfoLabels();
             string country = GetCountry();
             var countriesWithWifiFix = new[] { "DK", "NO", "SE", "GROUP" };
             var countriesWithPrinterButton = new[] { "DK", "GROUP", "SE" };
@@ -580,12 +592,12 @@ namespace ITSupportToolGUI
                 await Task.WhenAll(computerNameTask, usernameTask, ssidTask, ipAddressTask, osVersionTask, lastRestartTask);
 
                 ComputerInfoItems.Clear();
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("ComputerNameLabel") ?? "Computer Name", Value = computerNameTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("UsernameLabel") ?? "Username", Value = usernameTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("OSVersionLabel") ?? "OS Version", Value = osVersionTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("IPAddressLabel") ?? "IP Address", Value = ipAddressTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("SSIDLabel") ?? "Network", Value = ssidTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("LastRestartLabel") ?? "Last Restart", Value = lastRestartTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "ComputerNameLabel", Label = _resourceManager.GetString("ComputerNameLabel") ?? "Computer Name", Value = computerNameTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "UsernameLabel", Label = _resourceManager.GetString("UsernameLabel") ?? "Username", Value = usernameTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "OSVersionLabel", Label = _resourceManager.GetString("OSVersionLabel") ?? "OS Version", Value = osVersionTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "IPAddressLabel", Label = _resourceManager.GetString("IPAddressLabel") ?? "IP Address", Value = ipAddressTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "SSIDLabel", Label = _resourceManager.GetString("SSIDLabel") ?? "Network", Value = ssidTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "LastRestartLabel", Label = _resourceManager.GetString("LastRestartLabel") ?? "Last Restart", Value = lastRestartTask.Result });
 
                 // Also update VPN status after initial info is fetched
                 UpdateVpnStatus();
