@@ -71,12 +71,16 @@ namespace ITSupportToolGUI
         public bool IsVpnConnected { get; private set; }
         public bool IsPowerShellButtonVisible { get; private set; }
         public bool IsPrinterButtonVisible { get; private set; }
+        public bool IsSwedishUser { get; private set; }
+        public bool IsServiceDeskEmailVisible { get; private set; }
+        public bool IsWifiCardVisible { get; private set; }
+
 
         // ==================== Printer Properties ====================
         public ObservableCollection<Printer> AvailablePrinters { get; } = new ObservableCollection<Printer>();
         public string SiteId { get => _siteId; set { _siteId = value; OnPropertyChanged(); } }
         public string PrinterStatusMessage { get => _printerStatusMessage; set { _printerStatusMessage = value; OnPropertyChanged(); } }
-        public string PrinterNotice => "OPS: Kan kun tilføje Ricoh printere";
+        public string PrinterNotice => IsSwedishUser ? "Indtast site-ID for at finde printere." : "OPS: Kan kun tilføje Ricoh printere";
 
 
         // ==================== UI Properties (from resources) ====================
@@ -310,16 +314,28 @@ namespace ITSupportToolGUI
                 {
                     var scriptBuilder = new StringBuilder();
                     scriptBuilder.AppendLine("$printers = @()");
-                    // Always search for the FollowYou printer
-                    scriptBuilder.AppendLine("$printers += Get-Printer -ComputerName stgprfy01 -Name 'FollowYou' -ErrorAction SilentlyContinue");
 
-                    // Also search for Ricoh and Zebra printers if a Site ID is provided
-                    if (!string.IsNullOrWhiteSpace(SiteId))
+                    if (IsSwedishUser)
                     {
-                        // Ricoh printers
-                        scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName STGPRPRD01.dt2kmeta.dansketraelast.dk -Name '*{SiteId}*' -ErrorAction SilentlyContinue");
-                        // Zebra printers
-                        scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName dt2rpr50 -Name '*{SiteId}PRZ*' -ErrorAction SilentlyContinue");
+                        // Swedish user specific printer search
+                        string searchPattern = string.IsNullOrWhiteSpace(SiteId) ? "*" : $"*{SiteId}*";
+                        scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName DT2RPR50.dt2kmeta.dansketraelast.dk -Name '{searchPattern}' -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName DT2RPR31.dt2kmeta.dansketraelast.dk -Name '{searchPattern}' -ErrorAction SilentlyContinue");
+                    }
+                    else
+                    {
+                        // Existing printer search logic for other users
+                        // Always search for the FollowYou printer
+                        scriptBuilder.AppendLine("$printers += Get-Printer -ComputerName stgprfy01 -Name 'FollowYou' -ErrorAction SilentlyContinue");
+
+                        // Also search for Ricoh and Zebra printers if a Site ID is provided
+                        if (!string.IsNullOrWhiteSpace(SiteId))
+                        {
+                            // Ricoh printers
+                            scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName STGPRPRD01.dt2kmeta.dansketraelast.dk -Name '*{SiteId}*' -ErrorAction SilentlyContinue");
+                            // Zebra printers
+                            scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName dt2rpr50 -Name '*{SiteId}PRZ*' -ErrorAction SilentlyContinue");
+                        }
                     }
 
                     scriptBuilder.AppendLine("$printers | Select-Object Name, @{Name='ServerName';Expression={$_.ComputerName}}, DriverName, Comment | ConvertTo-Csv -NoTypeInformation");
@@ -480,7 +496,11 @@ namespace ITSupportToolGUI
             UpdateVpnStatus();
             string country = GetCountry();
             var countriesWithWifiFix = new[] { "DK", "NO", "SE", "GROUP" };
-            var countriesWithPrinterButton = new[] { "DK", "GROUP" };
+            var countriesWithPrinterButton = new[] { "DK", "GROUP", "SE" };
+
+            IsSwedishUser = country == "SE";
+            IsServiceDeskEmailVisible = !IsSwedishUser;
+            IsWifiCardVisible = !IsSwedishUser;
 
             IsPowerShellButtonVisible = countriesWithWifiFix.Contains(country);
             IsPrinterButtonVisible = countriesWithPrinterButton.Contains(country);

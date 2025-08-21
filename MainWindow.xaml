@@ -233,14 +233,14 @@
                                 <TextBlock Grid.Row="1" Grid.Column="0" Text="📞" Style="{StaticResource IconTextStyle}" Margin="0,5,10,5"/>
                                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServiceDeskPhone, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Margin="0,5,0,5"/>
 
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="📧" Style="{StaticResource IconTextStyle}"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="📧" Style="{StaticResource IconTextStyle}" Visibility="{Binding IsServiceDeskEmailVisible, Converter={StaticResource BoolToVis}}"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ServiceDeskEmail, Mode=OneWay}" Style="{StaticResource SelectableInfoTextStyle}" Visibility="{Binding IsServiceDeskEmailVisible, Converter={StaticResource BoolToVis}}"/>
                             </Grid>
                         </StackPanel>
                     </Border>
 
                     <!-- Employee Wi-Fi Card -->
-                    <Border Style="{StaticResource CardBorderStyle}">
+                    <Border Style="{StaticResource CardBorderStyle}" Visibility="{Binding IsWifiCardVisible, Converter={StaticResource BoolToVis}}">
                         <StackPanel>
                             <TextBlock Text="{Binding WifiCardTitle, Mode=OneWay}" Style="{StaticResource CardTitleStyle}"/>
                             <Grid>
