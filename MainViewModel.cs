@@ -80,11 +80,6 @@ namespace ITSupportToolGUI
         public ObservableCollection<Printer> AvailablePrinters { get; } = new ObservableCollection<Printer>();
         public string SiteId { get => _siteId; set { _siteId = value; OnPropertyChanged(); } }
         public string PrinterStatusMessage { get => _printerStatusMessage; set { _printerStatusMessage = value; OnPropertyChanged(); } }
-        // TODO: A new resource string "PrinterNotice" is needed with the following values:
-        // Default (en-US for GROUP): "NOTE: Can only add Ricoh printers."
-        // da-DK: "OPS: Kan kun tilføje Ricoh printere."
-        // sv-SE: "Enter Site ID to find printers."
-        // The fallback value is a generic message.
         public string PrinterNotice => _resourceManager.GetString("PrinterNotice") ?? "Enter Site ID to find printers.";
 
 
@@ -567,7 +562,7 @@ namespace ITSupportToolGUI
             // For testing purposes, you can temporarily override the country code here.
             // For example: return "SE"; or return "NO";
             // Set to an empty string to use the actual system region.
-            string _testCountryCode = "";
+            string _testCountryCode = "SE";
 
             if (!string.IsNullOrEmpty(_testCountryCode))
             {

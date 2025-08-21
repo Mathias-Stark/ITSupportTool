@@ -235,7 +235,7 @@
     <value>Add Printer</value>
   </data>
   <data name="SiteIdLabel" xml:space="preserve">
-    <value>Location ID:</value>
+    <value>Store nr.:</value>
   </data>
   <data name="SearchButtonText" xml:space="preserve">
     <value>Search</value>
@@ -256,10 +256,10 @@
     <value>Found {0} Ricoh printers.</value>
   </data>
   <data name="PrinterStatusNotFound" xml:space="preserve">
-    <value>No Ricoh printers found for that Site ID.</value>
+    <value>No Ricoh printers found for that store number.</value>
   </data>
   <data name="PrinterStatusEnterSiteId" xml:space="preserve">
-    <value>Enter a Site ID to find Ricoh printers.</value>
+    <value>Enter a location number to find Ricoh printers.</value>
   </data>
   <data name="PrinterErrorNoPrinterSelected" xml:space="preserve">
     <value>Please select at least one printer to add.</value>
@@ -329,5 +329,8 @@
   </data>
   <data name="ITMessagesURL" xml:space="preserve">
     <value>https://starkworkspace.sharepoint.com/sites/toolboxstarkgroup/_layouts/15/news.aspx?title=Latest%20news&amp;newsSource=3&amp;instanceId=3c3acc5f-432c-4b7b-a6b3-0426a6dad5cf&amp;webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&amp;serverRelativeUrl=%2Fsites%2Ftoolboxstarkgroup%2FSitePages%2FHome.aspx&amp;pagesListId=b5016441-c0e2-46b8-8e37-38673915ad42&amp;audienceTargetingEnabled=true</value>
+  </data>
+  <data name="PrinterNotice" xml:space="preserve">
+    <value>NOTE: Can only add Ricoh printers.</value>
   </data>
 </root>

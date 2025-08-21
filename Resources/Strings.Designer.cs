@@ -250,6 +250,15 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://starkworkspace.sharepoint.com/sites/toolboxstarkgroup/_layouts/15/news.aspx?title=Latest%20news&amp;newsSource=3&amp;instanceId=3c3acc5f-432c-4b7b-a6b3-0426a6dad5cf&amp;webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&amp;serverRelativeUrl=%2Fsites%2Ftoolboxstarkgroup%2FSitePages%2FHome.aspx&amp;pagesListId=b5016441-c0e2-46b8-8e37-38673915ad42&amp;audienceTargetingEnabled=true.
+        /// </summary>
+        internal static string ITMessagesURL {
+            get {
+                return ResourceManager.GetString("ITMessagesURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Restart:.
         /// </summary>
         internal static string LastRestartLabel {
@@ -376,6 +385,15 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NOTE: Can only add Ricoh printers..
+        /// </summary>
+        internal static string PrinterNotice {
+            get {
+                return ResourceManager.GetString("PrinterNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Printer installation complete..
         /// </summary>
         internal static string PrinterReportComplete {
@@ -412,7 +430,7 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter a Site ID to find Ricoh printers..
+        ///   Looks up a localized string similar to Enter a location number to find Ricoh printers..
         /// </summary>
         internal static string PrinterStatusEnterSiteId {
             get {
@@ -448,7 +466,7 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Ricoh printers found for that Site ID..
+        ///   Looks up a localized string similar to No Ricoh printers found for that store number..
         /// </summary>
         internal static string PrinterStatusNotFound {
             get {
@@ -583,7 +601,7 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Location ID:.
+        ///   Looks up a localized string similar to Store nr.:.
         /// </summary>
         internal static string SiteIdLabel {
             get {
