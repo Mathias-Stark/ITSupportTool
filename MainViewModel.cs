@@ -84,15 +84,18 @@ namespace ITSupportToolGUI
         {
             get
             {
-                if (IsSwedishUser)
+                string country = GetCountry();
+                if (country == "DK" || country == "GROUP")
                 {
-                    // TODO: The resource string "PrinterStatusEnterSiteId" should be made generic (e.g., "Enter Site ID to find printers.").
-                    return _resourceManager.GetString("PrinterStatusEnterSiteId") ?? "Indtast site-ID for at finde printere.";
+                    // TODO: A new resource string "PrinterNoticeRicoh" is needed.
+                    // Default (en-US for GROUP): "NOTE: Can only add Ricoh printers."
+                    // da-DK: "OPS: Kan kun tilføje Ricoh printere."
+                    return _resourceManager.GetString("PrinterNoticeRicoh") ?? "NOTE: Can only add Ricoh printers.";
                 }
                 else
                 {
-                    // TODO: A new resource string "PrinterNoticeRicoh" is needed for "OPS: Kan kun tilføje Ricoh printere".
-                    return _resourceManager.GetString("PrinterNoticeRicoh") ?? "OPS: Kan kun tilføje Ricoh printere";
+                    // TODO: The resource string "PrinterStatusEnterSiteId" should be made generic (e.g., "Enter Site ID to find printers.").
+                    return _resourceManager.GetString("PrinterStatusEnterSiteId") ?? "Enter Site ID to find printers.";
                 }
             }
         }
