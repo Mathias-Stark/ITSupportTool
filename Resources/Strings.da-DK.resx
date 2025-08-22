@@ -202,7 +202,7 @@
     <value>Reparer Wi-Fi Forbindelse</value>
   </data>
   <data name="InstructionsStep1" xml:space="preserve">
-    <value>1. Klik på "Kør Reparation"</value>
+    <value>1. Klik på "Kør Reparation" herunder</value>
   </data>
   <data name="InstructionsStep1Body" xml:space="preserve">
     <value>Dette vil åbne Wi-Fi listen i højre side af din skærm.</value>
@@ -256,7 +256,7 @@
     <value>Fandt {0} Ricoh-printere.</value>
   </data>
   <data name="PrinterStatusNotFound" xml:space="preserve">
-    <value>Ingen Ricoh-printere fundet for det afdelingsnummer.</value>
+    <value>Ingen Ricoh-printere fundet for det butiksnummer.</value>
   </data>
   <data name="PrinterStatusEnterSiteId" xml:space="preserve">
     <value>Indtast et afdelingsnummer for at finde Ricoh-printere.</value>
@@ -329,5 +329,14 @@
   </data>
   <data name="ITMessagesURL" xml:space="preserve">
     <value>https://starkworkspace.sharepoint.com/sites/toolboxstarkdk/_layouts/15/news.aspx?title=IT%20Servicemeddelelser&amp;newsSource=3&amp;instanceId=f0432ad5-c752-4696-bb24-3006c93c8e22&amp;webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&amp;serverRelativeUrl=%2Fsites%2Ftoolboxstarkdk%2FSitePages%2FHome.aspx&amp;pagesListId=1485bbde-3d57-4a10-8d68-ff781af0d722</value>
+  </data>
+  <data name="PrinterNotice" xml:space="preserve">
+    <value>OBS: Kan kun tilføje Ricoh printere.</value>
+  </data>
+  <data name="PrinterSelectHeader" xml:space="preserve">
+    <value>Vælg</value>
+  </data>
+  <data name="PrinterNameHeader" xml:space="preserve">
+    <value>Printernavn</value>
   </data>
 </root>

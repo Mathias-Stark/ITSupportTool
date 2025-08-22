@@ -202,7 +202,7 @@
     <value>Reparer Wi-Fi-tilkobling</value>
   </data>
   <data name="InstructionsStep1" xml:space="preserve">
-    <value>1. Klikk på "Kjør Reparasjon"</value>
+    <value>1. Klikk på "Kjør reparasjon" nedenfor</value>
   </data>
   <data name="InstructionsStep1Body" xml:space="preserve">
     <value>Dette vil åpne Wi-Fi-listen på høyre side av skjermen.</value>
@@ -253,13 +253,13 @@
     <value>Søker etter skrivere...</value>
   </data>
   <data name="PrinterStatusFound" xml:space="preserve">
-    <value>Fant {0} Ricoh-skrivere.</value>
+    <value>Fant {0} skrivere.</value>
   </data>
   <data name="PrinterStatusNotFound" xml:space="preserve">
-    <value>Ingen Ricoh-skrivere funnet for det avdelingsnummeret.</value>
+    <value>Ingen skrivere funnet for det butikknummeret.</value>
   </data>
   <data name="PrinterStatusEnterSiteId" xml:space="preserve">
-    <value>Skriv inn et avdelingsnummer for å finne Ricoh-skrivere.</value>
+    <value>Skriv inn et lokasjonsnummer for å finne skrivere.</value>
   </data>
   <data name="PrinterErrorNoPrinterSelected" xml:space="preserve">
     <value>Vennligst velg minst én skriver for å legge til.</value>
@@ -329,5 +329,14 @@
   </data>
   <data name="ITMessagesURL" xml:space="preserve">
     <value>https://starkworkspace.sharepoint.com/sites/toolboxneumann/_layouts/15/news.aspx?title=IT%20driftsmeldinger&amp;newsSource=3&amp;instanceId=474050fe-7cf7-4d0b-b4f3-6eafe78aae78&amp;webPartId=8c88f208-6c77-4bdb-86a0-0c47b4316588&amp;serverRelativeUrl=%2Fsites%2Ftoolboxneumann%2FSitePages%2FHome.aspx&amp;pagesListId=847af74d-84e4-4a37-89ce-cbb1a044f0fc</value>
+  </data>
+  <data name="PrinterNotice" xml:space="preserve">
+    <value>Skriv inn butikknummeret for å finne skrivere.</value>
+  </data>
+  <data name="PrinterSelectHeader" xml:space="preserve">
+    <value>Velge</value>
+  </data>
+  <data name="PrinterNameHeader" xml:space="preserve">
+    <value>Skrivernavn</value>
   </data>
 </root>

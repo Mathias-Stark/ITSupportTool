@@ -71,12 +71,17 @@ namespace ITSupportToolGUI
         public bool IsVpnConnected { get; private set; }
         public bool IsPowerShellButtonVisible { get; private set; }
         public bool IsPrinterButtonVisible { get; private set; }
+        public bool IsSwedishUser { get; private set; }
+        public bool IsServiceDeskEmailVisible { get; private set; }
+        public bool IsWifiCardVisible { get; private set; }
+
 
         // ==================== Printer Properties ====================
         public ObservableCollection<Printer> AvailablePrinters { get; } = new ObservableCollection<Printer>();
         public string SiteId { get => _siteId; set { _siteId = value; OnPropertyChanged(); } }
         public string PrinterStatusMessage { get => _printerStatusMessage; set { _printerStatusMessage = value; OnPropertyChanged(); } }
-        public string PrinterNotice => "OPS: Kan kun tilføje Ricoh printere";
+        public string PrinterNotice => _resourceManager.GetString("PrinterNotice") ?? string.Empty;
+
 
 
         // ==================== UI Properties (from resources) ====================
@@ -124,6 +129,9 @@ namespace ITSupportToolGUI
         public string SiteIdLabel => _resourceManager.GetString("SiteIdLabel") ?? string.Empty;
         public string SearchButtonText => _resourceManager.GetString("SearchButtonText") ?? string.Empty;
         public string AddSelectedButtonText => _resourceManager.GetString("AddSelectedButtonText") ?? string.Empty;
+        public string PrinterSelectHeader => _resourceManager.GetString("PrinterSelectHeader") ?? string.Empty;
+        public string PrinterNameHeader => _resourceManager.GetString("PrinterNameHeader") ?? string.Empty;
+
 
         // Service Desk View (Consolidated)
         public string ServiceDeskTitle => _resourceManager.GetString("ServiceDeskTitle") ?? string.Empty;
@@ -310,16 +318,28 @@ namespace ITSupportToolGUI
                 {
                     var scriptBuilder = new StringBuilder();
                     scriptBuilder.AppendLine("$printers = @()");
-                    // Always search for the FollowYou printer
-                    scriptBuilder.AppendLine("$printers += Get-Printer -ComputerName stgprfy01 -Name 'FollowYou' -ErrorAction SilentlyContinue");
 
-                    // Also search for Ricoh and Zebra printers if a Site ID is provided
-                    if (!string.IsNullOrWhiteSpace(SiteId))
+                    if (IsSwedishUser)
                     {
-                        // Ricoh printers
-                        scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName STGPRPRD01.dt2kmeta.dansketraelast.dk -Name '*{SiteId}*' -ErrorAction SilentlyContinue");
-                        // Zebra printers
-                        scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName dt2rpr50 -Name '*{SiteId}PRZ*' -ErrorAction SilentlyContinue");
+                        // Swedish user specific printer search
+                        string searchPattern = string.IsNullOrWhiteSpace(SiteId) ? "*" : $"*{SiteId}*";
+                        scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName DT2RPR50.dt2kmeta.dansketraelast.dk -Name '{searchPattern}' -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName DT2RPR31.dt2kmeta.dansketraelast.dk -Name '{searchPattern}' -ErrorAction SilentlyContinue");
+                    }
+                    else
+                    {
+                        // Existing printer search logic for other users
+                        // Always search for the FollowYou printer
+                        scriptBuilder.AppendLine("$printers += Get-Printer -ComputerName stgprfy01 -Name 'FollowYou' -ErrorAction SilentlyContinue");
+
+                        // Also search for Ricoh and Zebra printers if a Site ID is provided
+                        if (!string.IsNullOrWhiteSpace(SiteId))
+                        {
+                            // Ricoh printers
+                            scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName STGPRPRD01.dt2kmeta.dansketraelast.dk -Name '*{SiteId}*' -ErrorAction SilentlyContinue");
+                            // Zebra printers
+                            scriptBuilder.AppendLine($"$printers += Get-Printer -ComputerName dt2rpr50 -Name '*{SiteId}PRZ*' -ErrorAction SilentlyContinue");
+                        }
                     }
 
                     scriptBuilder.AppendLine("$printers | Select-Object Name, @{Name='ServerName';Expression={$_.ComputerName}}, DriverName, Comment | ConvertTo-Csv -NoTypeInformation");
@@ -380,11 +400,13 @@ namespace ITSupportToolGUI
 
                     if (!AvailablePrinters.Any())
                     {
-                        PrinterStatusMessage = _resourceManager.GetString("PrinterStatusNotFound") ?? "No printers found.";
+                        // TODO: The resource string "PrinterStatusNotFound" should be made generic (e.g., "No printers found for that Site ID.").
+                        PrinterStatusMessage = _resourceManager.GetString("PrinterStatusNotFound") ?? "No printers found for that Site ID.";
                     }
                     else
                     {
-                        PrinterStatusMessage = $"Found {AvailablePrinters.Count} printers.";
+                        // TODO: The resource string "PrinterStatusFound" should be made generic (e.g., "Found {0} printers.").
+                        PrinterStatusMessage = string.Format(_resourceManager.GetString("PrinterStatusFound") ?? "Found {0} printers.", AvailablePrinters.Count);
                     }
                 });
             }
@@ -471,6 +493,17 @@ namespace ITSupportToolGUI
 
 
         // ==================== Language and Culture Logic ====================
+        private void UpdateComputerInfoLabels()
+        {
+            foreach (var item in ComputerInfoItems)
+            {
+                if (!string.IsNullOrEmpty(item.Id))
+                {
+                    item.Label = _resourceManager.GetString(item.Id) ?? item.Label;
+                }
+            }
+        }
+
         public Task SetLanguage(string culture)
         {
             // Set the culture first
@@ -478,9 +511,14 @@ namespace ITSupportToolGUI
 
             // Update all state that depends on the new culture
             UpdateVpnStatus();
+            UpdateComputerInfoLabels();
             string country = GetCountry();
             var countriesWithWifiFix = new[] { "DK", "NO", "SE", "GROUP" };
-            var countriesWithPrinterButton = new[] { "DK", "GROUP" };
+            var countriesWithPrinterButton = new[] { "DK", "GROUP", "SE" };
+
+            IsSwedishUser = country == "SE";
+            IsServiceDeskEmailVisible = !IsSwedishUser;
+            IsWifiCardVisible = !IsSwedishUser;
 
             IsPowerShellButtonVisible = countriesWithWifiFix.Contains(country);
             IsPrinterButtonVisible = countriesWithPrinterButton.Contains(country);
@@ -560,12 +598,12 @@ namespace ITSupportToolGUI
                 await Task.WhenAll(computerNameTask, usernameTask, ssidTask, ipAddressTask, osVersionTask, lastRestartTask);
 
                 ComputerInfoItems.Clear();
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("ComputerNameLabel") ?? "Computer Name", Value = computerNameTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("UsernameLabel") ?? "Username", Value = usernameTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("OSVersionLabel") ?? "OS Version", Value = osVersionTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("IPAddressLabel") ?? "IP Address", Value = ipAddressTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("SSIDLabel") ?? "Network", Value = ssidTask.Result });
-                ComputerInfoItems.Add(new InfoItem { Label = _resourceManager.GetString("LastRestartLabel") ?? "Last Restart", Value = lastRestartTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "ComputerNameLabel", Label = _resourceManager.GetString("ComputerNameLabel") ?? "Computer Name", Value = computerNameTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "UsernameLabel", Label = _resourceManager.GetString("UsernameLabel") ?? "Username", Value = usernameTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "OSVersionLabel", Label = _resourceManager.GetString("OSVersionLabel") ?? "OS Version", Value = osVersionTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "IPAddressLabel", Label = _resourceManager.GetString("IPAddressLabel") ?? "IP Address", Value = ipAddressTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "SSIDLabel", Label = _resourceManager.GetString("SSIDLabel") ?? "Network", Value = ssidTask.Result });
+                ComputerInfoItems.Add(new InfoItem { Id = "LastRestartLabel", Label = _resourceManager.GetString("LastRestartLabel") ?? "Last Restart", Value = lastRestartTask.Result });
 
                 // Also update VPN status after initial info is fetched
                 UpdateVpnStatus();
@@ -680,11 +718,8 @@ namespace ITSupportToolGUI
             IsVpnConnected = IsFortiClientConnected();
             OnPropertyChanged(nameof(IsVpnConnected));
 
-            var vpnStatusLabel = _resourceManager.GetString("VPNStatusLabel") ?? "VPN Status";
-            var vpnIpAddressLabel = _resourceManager.GetString("VPNIPAddressLabel") ?? "VPN IP Address";
-
-            // Remove existing VPN info
-            var vpnItems = ComputerInfoItems.Where(i => i.Label == vpnStatusLabel || i.Label == vpnIpAddressLabel).ToList();
+            // Remove existing VPN info using the language-independent Id
+            var vpnItems = ComputerInfoItems.Where(i => i.Id == "vpn-status" || i.Id == "vpn-ip").ToList();
             foreach (var item in vpnItems)
             {
                 ComputerInfoItems.Remove(item);
@@ -692,12 +727,10 @@ namespace ITSupportToolGUI
 
             if (IsVpnConnected)
             {
-                ComputerInfoItems.Add(new InfoItem { Label = vpnStatusLabel, Value = _resourceManager.GetString("FortiClientConnected") ?? "Connected" });
-                ComputerInfoItems.Add(new InfoItem { Label = vpnIpAddressLabel, Value = GetVpnIpAddress() ?? "N/A" });
-            }
-            else
-            {
-                ComputerInfoItems.Add(new InfoItem { Label = vpnStatusLabel, Value = _resourceManager.GetString("FortiClientDisconnected") ?? "Disconnected" });
+                var vpnStatusLabel = _resourceManager.GetString("VPNStatusLabel") ?? "VPN Status";
+                var vpnIpAddressLabel = _resourceManager.GetString("VPNIPAddressLabel") ?? "VPN IP Address";
+                ComputerInfoItems.Add(new InfoItem { Id = "vpn-status", Label = vpnStatusLabel, Value = _resourceManager.GetString("FortiClientConnected") ?? "Connected" });
+                ComputerInfoItems.Add(new InfoItem { Id = "vpn-ip", Label = vpnIpAddressLabel, Value = GetVpnIpAddress() ?? "N/A" });
             }
         }
 
