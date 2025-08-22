@@ -196,7 +196,7 @@ namespace ITSupportToolGUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1. Click &quot;Run Fix&quot;.
+        ///   Looks up a localized string similar to 1. Click &quot;Run Fix&quot; below.
         /// </summary>
         internal static string InstructionsStep1 {
             get {

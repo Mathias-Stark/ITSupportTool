@@ -202,7 +202,7 @@
     <value>Fix Wi-Fi Connection</value>
   </data>
   <data name="InstructionsStep1" xml:space="preserve">
-    <value>1. Click "Run Fix"</value>
+    <value>1. Click "Run Fix" below</value>
   </data>
   <data name="InstructionsStep1Body" xml:space="preserve">
     <value>This will open the Wi-Fi list on the right side of your screen.</value>

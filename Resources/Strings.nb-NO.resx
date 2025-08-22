@@ -202,7 +202,7 @@
     <value>Reparer Wi-Fi-tilkobling</value>
   </data>
   <data name="InstructionsStep1" xml:space="preserve">
-    <value>1. Klikk på "Kjør Reparasjon"</value>
+    <value>1. Klikk på "Kjør reparasjon" nedenfor</value>
   </data>
   <data name="InstructionsStep1Body" xml:space="preserve">
     <value>Dette vil åpne Wi-Fi-listen på høyre side av skjermen.</value>

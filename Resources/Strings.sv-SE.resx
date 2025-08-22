@@ -202,7 +202,7 @@
     <value>Reparera Wi-Fi-anslutning</value>
   </data>
   <data name="InstructionsStep1" xml:space="preserve">
-    <value>1. Klicka på "Kör Reparation"</value>
+    <value>1. Klicka på "Kör reparation" nedan</value>
   </data>
   <data name="InstructionsStep1Body" xml:space="preserve">
     <value>Detta öppnar Wi-Fi-listan på höger sida av skärmen.</value>
